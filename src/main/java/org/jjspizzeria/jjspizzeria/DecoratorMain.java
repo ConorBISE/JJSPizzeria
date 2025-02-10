@@ -1,8 +1,8 @@
-package org.jjspizzeria;
+package org.jjspizzeria.jjspizzeria;
 
-import org.jjspizzeria.pizza.*;
+import org.jjspizzeria.jjspizzeria.pizza.*;
 
-public class Main {
+public class DecoratorMain {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 

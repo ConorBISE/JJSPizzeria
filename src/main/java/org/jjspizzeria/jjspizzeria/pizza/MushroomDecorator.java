@@ -1,4 +1,4 @@
-package org.jjspizzeria.pizza;
+package org.jjspizzeria.jjspizzeria.pizza;
 
 public class MushroomDecorator extends ToppingDecorator {
     public MushroomDecorator(Pizza pizza) {

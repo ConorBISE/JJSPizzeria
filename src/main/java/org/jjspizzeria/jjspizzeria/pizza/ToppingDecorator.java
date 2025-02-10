@@ -1,4 +1,4 @@
-package org.jjspizzeria.pizza;
+package org.jjspizzeria.jjspizzeria.pizza;
 
 public abstract class ToppingDecorator implements Pizza {
     protected Pizza pizza;

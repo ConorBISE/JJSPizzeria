@@ -1,8 +1,8 @@
-module com.example.jjspizzeria {
+module org.jjspizzeria.jjspizzeria {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.jjspizzeria to javafx.fxml;
-    exports com.example.jjspizzeria;
+    opens org.jjspizzeria.jjspizzeria to javafx.fxml;
+    exports org.jjspizzeria.jjspizzeria;
 }

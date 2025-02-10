@@ -1,4 +1,4 @@
-package com.example.jjspizzeria;
+package org.jjspizzeria.jjspizzeria;
 
 import javafx.scene.control.TextArea;
 
