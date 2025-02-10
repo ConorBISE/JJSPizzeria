@@ -7,6 +7,6 @@ class MainTest {
 
     @Test
     void testExample() {
-        assert(!("Hello".equals("World")));
+        assertNotEquals("Hello", "World");
     }
 }
