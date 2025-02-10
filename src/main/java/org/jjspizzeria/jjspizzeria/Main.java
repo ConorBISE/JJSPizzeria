@@ -11,11 +11,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.jjspizzeria.jjspizzeria.themes.factories.FireModeFactory;
+import org.jjspizzeria.jjspizzeria.themes.factories.ThemeFactory;
 
 
 public class Main extends Application {
     TextArea consoleArea;
     GameConsole console;
+    ThemeFactory themeFactory = new FireModeFactory();
 
     @Override
     public void start(Stage primaryStage) {
@@ -45,7 +48,7 @@ public class Main extends Application {
         // Shift the console down so its top is behind the banner
         StackPane.setMargin(consoleArea, new Insets(60, 0, 0, 0));
 
-        Button button = new Button("Click Me");
+        Button button = themeFactory.createButtons().createButton();
         button.setOnAction(e -> console.append("Button clicked!"));
 
         // Lay everything out
