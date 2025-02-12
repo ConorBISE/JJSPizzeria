@@ -1,5 +1,9 @@
-package org.jjspizzeria.jjspizzeria.pizza;
+package org.jjspizzeria.jjspizzeria;
 
+import org.jjspizzeria.jjspizzeria.pizza.CheeseCrustPizza;
+import org.jjspizzeria.jjspizzeria.pizza.ConcreteTopping;
+import org.jjspizzeria.jjspizzeria.pizza.Pizza;
+import org.jjspizzeria.jjspizzeria.pizza.ToppingEntity;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
