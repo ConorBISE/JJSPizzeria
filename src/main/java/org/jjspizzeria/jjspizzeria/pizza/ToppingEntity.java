@@ -1,5 +1,11 @@
-public class Topping {
-    public Topping (String name, double cost, String path) {
+package org.jjspizzeria.jjspizzeria.pizza;
+
+public class ToppingEntity {
+    private String name;
+    private double cost;
+    private String path;
+
+    public ToppingEntity(String name, double cost, String path) {
         this.name = name;
         this.cost = cost;
         this.path = path;
