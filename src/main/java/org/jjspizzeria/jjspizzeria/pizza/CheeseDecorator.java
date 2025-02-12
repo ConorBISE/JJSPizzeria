@@ -1,7 +1,7 @@
 package org.jjspizzeria.jjspizzeria.pizza;
 
 public class CheeseDecorator extends ToppingDecorator {
-    Topping cheese = new Topping (", Cheese", 1, "cheese.png");
+    Topping cheese = new Topping ("Cheese", 1.50, "cheese.png");
     public CheeseDecorator(Pizza pizza) {
         super(pizza);
 
@@ -9,7 +9,7 @@ public class CheeseDecorator extends ToppingDecorator {
 
     @Override
     public String getDescription() {
-        return pizza.getDescription() + cheese.getName();
+        return pizza.getDescription() + " + " + cheese.getName();
     }
 
     @Override

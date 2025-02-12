@@ -1,9 +1,6 @@
 package org.jjspizzeria.jjspizzeria;
 
-import org.jjspizzeria.jjspizzeria.pizza.BasePizza;
-import org.jjspizzeria.jjspizzeria.pizza.CheeseDecorator;
-import org.jjspizzeria.jjspizzeria.pizza.Pizza;
-import org.jjspizzeria.jjspizzeria.pizza.Topping;
+import org.jjspizzeria.jjspizzeria.pizza.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,29 +15,25 @@ public class DecoratorTest {
     @Test
     public void testBasePizzaDescription() {
         Pizza pizza = new BasePizza();
-        assertEquals("Cheese Crust Pizza", pizza.getDescription());
+        assertEquals("Pizza", pizza.getDescription());
     }
 
     @Test
     public void testPizzaWithCheese() {
-        Topping cheese = new Topping("Cheese", 1.00, "cheese.png");
-        Pizza pizza = new CheeseDecorator(new BasePizza(), cheese);
+        Pizza pizza = new CheeseDecorator(new BasePizza());
         
-        assertEquals(10.0, pizza.getCost());
-        assertEquals("Cheese Crust Pizza + Cheese", pizza.getDescription());
+        assertEquals(10.50, pizza.getCost());
+        assertEquals("Pizza + Cheese", pizza.getDescription());
     }
 
     @Test
     public void testPizzaWithMultipleToppings() {
-        Topping cheese = new Topping("Cheese", 1.00, "cheese.png");
-        Topping jalapeno = new Topping("Jalapeno", 1.50, "jalapeno.png");
-        
         Pizza pizza = new BasePizza();
-        pizza = new CheeseDecorator(pizza, cheese);
-        pizza = new CheeseDecorator(pizza, jalapeno);
+        pizza = new CheeseDecorator(pizza);
+        pizza = new PepperoniDecorator(pizza);
         
         assertEquals(11.50, pizza.getCost());
-        assertEquals("Cheese Crust Pizza + Cheese + Jalapeno", pizza.getDescription());
+        assertEquals("Pizza + Cheese + Pepperoni", pizza.getDescription());
     }
 
 
