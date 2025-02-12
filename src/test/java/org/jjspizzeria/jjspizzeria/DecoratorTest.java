@@ -32,7 +32,7 @@ public class DecoratorTest {
         pizza = new CheeseDecorator(pizza);
         pizza = new PepperoniDecorator(pizza);
         
-        assertEquals(11.50, pizza.getCost());
+        assertEquals(12.50, pizza.getCost());
         assertEquals("Pizza + Cheese + Pepperoni", pizza.getDescription());
     }
 

@@ -1,12 +1,21 @@
 package org.jjspizzeria.jjspizzeria.pizza;
 
 public class CheeseDecorator extends ToppingDecorator {
-    Topping cheese = new Topping ("Cheese", 1.50, "cheese.png");
+    /**
+     Decorator class for pizza
+     Adds cheese to component
+     */
+
+    private final Topping cheese;
+
+    //Constructor
     public CheeseDecorator(Pizza pizza) {
         super(pizza);
-
+        cheese = new Topping ("Cheese", 1.50, "cheese.png");
     }
 
+
+    //Getters
     @Override
     public String getDescription() {
         return pizza.getDescription() + " + " + cheese.getName();
@@ -20,5 +29,9 @@ public class CheeseDecorator extends ToppingDecorator {
     @Override
     public String getPath() {
         return cheese.getPath();
+    }
+
+    public Topping getTopping(){
+        return cheese;
     }
 }

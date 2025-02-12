@@ -1,6 +1,7 @@
 package org.jjspizzeria.jjspizzeria.pizza;
 
 public class BasePizza implements Pizza{
+    //Base class of pizza, used for decorator
 
     @Override
     public String getDescription() {

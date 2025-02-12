@@ -1,14 +1,23 @@
 package org.jjspizzeria.jjspizzeria.pizza;
 
 public class PepperoniDecorator extends ToppingDecorator {
-    Topping pepperoni = new Topping ("Pepperoni", 1, "pepperoni.png");
+    /**
+     Decorator class for pizza
+     Adds pepperoni to component
+     */
+    private final Topping pepperoni;
+
+    //Constructor
     public PepperoniDecorator(Pizza pizza) {
         super(pizza);
+        pepperoni = new Topping ("Pepperoni", 2, "pepperoni.png");
 
     }
 
+    //Getters
     @Override
-    public String getDescription() {
+    public String getDescription()
+    {
         return pizza.getDescription() + " + " + pepperoni.getName();
     }
 
@@ -20,5 +29,9 @@ public class PepperoniDecorator extends ToppingDecorator {
     @Override
     public String getPath() {
         return pepperoni.getPath();
+    }
+
+    public Topping getTopping(){
+        return pepperoni;
     }
 }
