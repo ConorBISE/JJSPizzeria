@@ -11,4 +11,9 @@ public class ThinCrustPizza implements Pizza{
     public double getCost() {
         return 7;
     }
+
+    @Override
+    public String getPath() {
+        return "path/to/image";
+    }
 }

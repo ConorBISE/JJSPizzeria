@@ -10,4 +10,9 @@ public class RegularCrustPizza implements Pizza{
     public double getCost() {
         return 5;
     }
+
+    @Override
+    public String getPath() {
+        return "path/to/image";
+    }
 }

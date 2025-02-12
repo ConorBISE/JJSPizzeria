@@ -11,4 +11,9 @@ public class CheeseCrustPizza implements Pizza{
     public double getCost() {
         return 9;
     }
+
+    @Override
+    public String getPath() {
+        return "path/to/image";
+    }
 }
