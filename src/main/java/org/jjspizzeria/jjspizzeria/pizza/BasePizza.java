@@ -1,10 +1,10 @@
 package org.jjspizzeria.jjspizzeria.pizza;
 
-public class CheeseCrustPizza implements Pizza{
+public class BasePizza implements Pizza{
 
     @Override
     public String getDescription() {
-        return "Cheese Crust Pizza";
+        return "Pizza";
     }
 
     @Override
