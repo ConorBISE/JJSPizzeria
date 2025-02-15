@@ -11,7 +11,10 @@ public class MushroomDecorator extends ToppingDecorator {
     public MushroomDecorator(Pizza pizza) {
         super(pizza);
         mushroom = new Topping ("Mushroom", 1, "mushroom.png");
+    }
 
+    public MushroomDecorator() {
+        mushroom = new Topping ("Mushroom", 1, "mushroom.png");
     }
 
     //Getters
@@ -31,6 +34,7 @@ public class MushroomDecorator extends ToppingDecorator {
         return mushroom.getPath();
     }
 
+    @Override
     public Topping getTopping(){
         return mushroom;
     }

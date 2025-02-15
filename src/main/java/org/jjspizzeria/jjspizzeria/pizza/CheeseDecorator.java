@@ -14,6 +14,9 @@ public class CheeseDecorator extends ToppingDecorator {
         cheese = new Topping ("Cheese", 1.50, "cheese.png");
     }
 
+    public CheeseDecorator() {
+        cheese = new Topping("Cheese", 1.50, "cheese.png");
+    }
 
     //Getters
     @Override

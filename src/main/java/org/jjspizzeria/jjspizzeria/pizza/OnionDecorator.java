@@ -11,7 +11,10 @@ public class OnionDecorator extends ToppingDecorator {
     public OnionDecorator(Pizza pizza) {
         super(pizza);
         onion = new Topping ("Onion", 1, "onion.png");
+    }
 
+    public OnionDecorator() {
+        onion = new Topping ("Onion", 1, "onion.png");
     }
 
     //Getters
@@ -31,6 +34,7 @@ public class OnionDecorator extends ToppingDecorator {
         return onion.getPath();
     }
 
+    @Override
     public Topping getTopping(){
         return onion;
     }
