@@ -6,7 +6,18 @@ public abstract class ToppingDecorator implements Pizza {
 
     public ToppingDecorator(Pizza pizza) {
         this.pizza = pizza;
+    }
 
+    public ToppingDecorator() {
+
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
+
+    public Pizza getPizza() {
+        return pizza;
     }
 
     @Override
@@ -18,4 +29,6 @@ public abstract class ToppingDecorator implements Pizza {
     public double getCost() {
         return pizza.getCost();
     }
+
+    public abstract Topping getTopping();
 }

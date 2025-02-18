@@ -14,6 +14,10 @@ public class JalapenoDecorator extends ToppingDecorator {
         jalapeno = new Topping ("Jalapeno", 1, "jalapeno.png");
     }
 
+    public JalapenoDecorator() {
+        jalapeno = new Topping("Jalapeno", 1, "jalapeno.png");
+    }
+
 
     //Getters
     @Override
@@ -31,6 +35,7 @@ public class JalapenoDecorator extends ToppingDecorator {
         return jalapeno.getPath();
     }
 
+    @Override
     public Topping getTopping(){
         return jalapeno;
     }

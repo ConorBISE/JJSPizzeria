@@ -14,6 +14,10 @@ public class HamDecorator extends ToppingDecorator {
         ham = new Topping ("Ham", 2, "ham.png");
     }
 
+    public HamDecorator() {
+        ham = new Topping ("Ham", 2, "ham.png");
+    }
+
 
     //Getters
     @Override
@@ -31,6 +35,7 @@ public class HamDecorator extends ToppingDecorator {
         return ham.getPath();
     }
 
+    @Override
     public Topping getTopping(){
         return ham;
     }
