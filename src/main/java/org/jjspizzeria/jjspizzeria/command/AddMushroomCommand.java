@@ -1,7 +1,7 @@
 package org.jjspizzeria.jjspizzeria.command;
 
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
-import org.jjspizzeria.jjspizzeria.pizza.pizzaDecorator.MushroomDecorator;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.MushroomDecorator;
 
 public class AddMushroomCommand extends Command {
     private final PizzaManager pizzaManager;

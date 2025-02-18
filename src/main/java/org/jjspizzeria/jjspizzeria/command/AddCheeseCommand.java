@@ -1,6 +1,6 @@
 package org.jjspizzeria.jjspizzeria.command;
 import org.jjspizzeria.jjspizzeria.pizza.*;
-import org.jjspizzeria.jjspizzeria.pizza.pizzaDecorator.CheeseDecorator;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.CheeseDecorator;
 
 public class AddCheeseCommand extends Command {
     private final PizzaManager pizzaManager;

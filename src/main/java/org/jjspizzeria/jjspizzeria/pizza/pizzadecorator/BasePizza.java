@@ -1,4 +1,4 @@
-package org.jjspizzeria.jjspizzeria.pizza.pizzaDecorator;
+package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
 public class BasePizza implements Pizza {
     //Base class of pizza, used for decorator

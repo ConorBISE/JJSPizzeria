@@ -1,5 +1,5 @@
 package org.jjspizzeria.jjspizzeria.pizza;
-import org.jjspizzeria.jjspizzeria.pizza.pizzaDecorator.*;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.*;
 
 import org.jjspizzeria.jjspizzeria.GameConsole;
 

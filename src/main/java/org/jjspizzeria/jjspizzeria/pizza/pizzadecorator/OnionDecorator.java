@@ -1,4 +1,4 @@
-package org.jjspizzeria.jjspizzeria.pizza.pizzaDecorator;
+package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
 public class OnionDecorator extends ToppingDecorator {
     /**
