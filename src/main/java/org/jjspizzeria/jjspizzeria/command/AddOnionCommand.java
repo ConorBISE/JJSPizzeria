@@ -1,6 +1,5 @@
 package org.jjspizzeria.jjspizzeria.command;
 
-import org.jjspizzeria.jjspizzeria.pizza.OnionDecorator;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
 
 public class AddOnionCommand extends Command {

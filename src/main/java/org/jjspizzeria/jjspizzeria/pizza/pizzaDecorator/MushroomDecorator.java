@@ -1,4 +1,4 @@
-package org.jjspizzeria.jjspizzeria.pizza;
+package org.jjspizzeria.jjspizzeria.pizza.pizzaDecorator;
 
 public class MushroomDecorator extends ToppingDecorator {
     /**
@@ -10,11 +10,11 @@ public class MushroomDecorator extends ToppingDecorator {
     //Constructor
     public MushroomDecorator(Pizza pizza) {
         super(pizza);
-        mushroom = new Topping ("Mushroom", 1, "mushroom.png");
+        mushroom = new Topping("Mushroom", 1, "mushroom.png");
     }
 
     public MushroomDecorator() {
-        mushroom = new Topping ("Mushroom", 1, "mushroom.png");
+        mushroom = new Topping("Mushroom", 1, "mushroom.png");
     }
 
     //Getters
