@@ -1,7 +1,11 @@
 package org.jjspizzeria.jjspizzeria.command;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -84,7 +88,46 @@ public class PizzaCommandInvoker {
 
     private VBox createOperationsBar() {
         // TODO: create panel for baking, slicing, and boxing the pizza
-        return new VBox(20);
+
+        //Bake HBox
+        Button normalBake = new Button("Normal");
+        normalBake.setOnAction(e -> System.out.println("Normal bake pressed"));
+
+        Button crispyBake = new Button("Crispy");
+        crispyBake.setOnAction(e -> System.out.println("Crispy bake pressed"));
+
+        HBox bakeOptions = new HBox(normalBake, crispyBake);
+        VBox bakeBar = new VBox (10, new Label("Bake"), bakeOptions);
+        bakeBar.setAlignment(Pos.CENTER);
+
+
+        //Slice HBox
+        Button slice4 = new Button("4");
+        slice4.setOnAction(e -> System.out.println("Slicing to 4"));
+
+        Button slice6 = new Button("6");
+        slice6.setOnAction(e -> System.out.println("Slicing to 6"));
+
+        Button slice8 = new Button("8");
+        slice8.setOnAction(e -> System.out.println("Slicing to 8"));
+
+        HBox sliceOptions = new HBox(10, slice4, slice6, slice8);
+        VBox sliceBar = new VBox (10, new Label("Slice"), sliceOptions);
+        sliceBar.setAlignment(Pos.CENTER);
+
+
+
+        Button boxButton = new Button("Box");
+        boxButton.setOnAction(e -> System.out.println("Boxing pizza"));
+
+        Button finishButton = new Button("Finish");
+        finishButton.setOnAction(e -> System.out.println("Finishing pizza"));
+
+        HBox actionButtons = new HBox(10, boxButton, finishButton);
+
+        VBox layout = new VBox(20, bakeBar, sliceBar, actionButtons);
+        layout.setStyle("-fx-padding: 20; -fx-alignment: center; -fx-spacing: 20;");
+        return layout;
     }
 
     public HBox getHBox() {
