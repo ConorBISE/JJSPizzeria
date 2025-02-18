@@ -1,7 +1,7 @@
 package org.jjspizzeria.jjspizzeria.command;
 
-import org.jjspizzeria.jjspizzeria.pizza.JalapenoDecorator;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.JalapenoDecorator;
 
 public class AddJalapenoCommand extends Command {
     private final PizzaManager pizzaManager;

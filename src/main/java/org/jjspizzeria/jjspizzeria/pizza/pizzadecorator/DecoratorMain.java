@@ -1,6 +1,4 @@
-package org.jjspizzeria.jjspizzeria;
-
-import org.jjspizzeria.jjspizzeria.pizza.*;
+package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
 
 public class DecoratorMain {

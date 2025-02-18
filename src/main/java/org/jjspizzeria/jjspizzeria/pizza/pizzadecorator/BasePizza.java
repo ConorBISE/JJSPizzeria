@@ -1,6 +1,6 @@
-package org.jjspizzeria.jjspizzeria.pizza;
+package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
-public class BasePizza implements Pizza{
+public class BasePizza implements Pizza {
     //Base class of pizza, used for decorator
 
     @Override

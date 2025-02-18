@@ -1,4 +1,4 @@
-package org.jjspizzeria.jjspizzeria.pizza;
+package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
 public class JalapenoDecorator extends ToppingDecorator {
     /**
@@ -11,7 +11,7 @@ public class JalapenoDecorator extends ToppingDecorator {
     //Constructor
     public JalapenoDecorator(Pizza pizza) {
         super(pizza);
-        jalapeno = new Topping ("Jalapeno", 1, "jalapeno.png");
+        jalapeno = new Topping("Jalapeno", 1, "jalapeno.png");
     }
 
     public JalapenoDecorator() {

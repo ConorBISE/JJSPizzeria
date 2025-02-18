@@ -1,4 +1,4 @@
-package org.jjspizzeria.jjspizzeria.pizza;
+package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
 public class Topping {
     /**

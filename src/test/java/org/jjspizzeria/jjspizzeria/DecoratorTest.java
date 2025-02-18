@@ -1,6 +1,6 @@
 package org.jjspizzeria.jjspizzeria;
 
-import org.jjspizzeria.jjspizzeria.pizza.*;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
