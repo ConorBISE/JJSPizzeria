@@ -13,15 +13,17 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.jjspizzeria.jjspizzeria.command.PizzaCommandInvoker;
 
-
 public class Main extends Application {
-    TextArea consoleArea;
-    GameConsole console;
+    private TextArea consoleArea;
+    private GameConsole console;
 
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("JJ's Pizzeria");
+        initializeGUI(primaryStage);
+    }
 
+    private void initializeGUI(Stage primaryStage) {
         console = GameConsole.getInstance();
         consoleArea = console.getTextArea();
         PizzaCommandInvoker pizzaCommandInvoker = new PizzaCommandInvoker();
@@ -56,8 +58,7 @@ public class Main extends Application {
 
         // Scene & stage
         Scene scene = new Scene(root, 760, 760);
-        scene.getStylesheets()
-                .add(getClass().getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
@@ -65,9 +66,7 @@ public class Main extends Application {
         console.append("Welcome to JJ's Pizzeria!");
     }
 
-
     public static void main(String[] args) {
         launch();
     }
 }
-
