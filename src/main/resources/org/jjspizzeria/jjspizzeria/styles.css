@@ -62,6 +62,7 @@
 .console .scroll-bar .thumb:pressed {
     -fx-background-color: #ff8888;
 }
+
 .original-theme {
     -fx-background-image: url("images/background.png");
     -fx-background-repeat: no-repeat;
@@ -74,4 +75,33 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
     -fx-background-position: center;
+
+
+.pizza-control-panel {
+    -fx-background-color: #3b81c5;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 2px;
+    -fx-border-color: #2c6fb1;
+}
+
+
+.topping-button {
+    -fx-background-color: #2c6fb1;
+    -fx-min-width: 80px;
+    -fx-max-width: 80px;
+    -fx-min-height: 70px;
+    -fx-max-height: 70px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-font-size: 20px;
+}
+
+.topping-button:hover {
+    -fx-background-color: #2659a5;
+    -fx-cursor: hand;
+
 }
