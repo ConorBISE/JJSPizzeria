@@ -12,7 +12,7 @@ public class ThemeManager {
         availableThemes = new ArrayList<>();
         availableThemes.add(new OriginalTheme());
         availableThemes.add(new EasterTheme());
-        currentTheme = availableThemes.get(1); // default set to Original theme
+        currentTheme = availableThemes.get(0); // default set to Original theme
     }
 
     public static ThemeManager getInstance() {
