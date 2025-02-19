@@ -4,21 +4,20 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.jjspizzeria.jjspizzeria.themes.factories.FireModeFactory;
-import org.jjspizzeria.jjspizzeria.themes.factories.ThemeFactory;
+import org.jjspizzeria.jjspizzeria.themes.ThemeFactory;
+import org.jjspizzeria.jjspizzeria.themes.ThemeManager;
 
 
 public class Main extends Application {
     TextArea consoleArea;
     GameConsole console;
-    ThemeFactory themeFactory = new FireModeFactory();
+    ThemeManager themeManager;
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -27,9 +26,11 @@ public class Main extends Application {
         console = GameConsole.getInstance();
         consoleArea = console.getTextArea();
 
+        themeManager = ThemeManager.getInstance();
+        ThemeFactory currentTheme = themeManager.getCurrentTheme();
+
         // Banner
-        Image bannerImage = new Image(getClass().getResourceAsStream("images/banner.png"));
-        ImageView bannerView = new ImageView(bannerImage);
+        ImageView bannerView = currentTheme.createBanner();
         bannerView.setFitWidth(400);
         bannerView.setPreserveRatio(true);
 
@@ -48,13 +49,11 @@ public class Main extends Application {
         // Shift the console down so its top is behind the banner
         StackPane.setMargin(consoleArea, new Insets(60, 0, 0, 0));
 
-        Button button = themeFactory.createButtons().createButton();
-        button.setOnAction(e -> console.append("Button clicked!"));
 
         // Lay everything out
         BorderPane root = new BorderPane();
         root.setCenter(stackPane);
-        root.setBottom(button);
+        root.getStyleClass().add(currentTheme.getBackgroundCSSClass());
 
         // Scene & stage
         Scene scene = new Scene(root, 760, 760);

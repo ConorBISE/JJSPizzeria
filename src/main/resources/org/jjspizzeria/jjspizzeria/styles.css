@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("images/background.png");
+
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
     -fx-background-position: center;
@@ -61,4 +61,17 @@
 }
 .console .scroll-bar .thumb:pressed {
     -fx-background-color: #ff8888;
+}
+.original-theme {
+    -fx-background-image: url("images/background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.easter-theme {
+    -fx-background-image: url("images/background-easter.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
 }
