@@ -1,7 +1,11 @@
 package org.jjspizzeria.jjspizzeria.command;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -84,7 +88,64 @@ public class PizzaCommandInvoker {
 
     private VBox createOperationsBar() {
         // TODO: create panel for baking, slicing, and boxing the pizza
-        return new VBox(20);
+
+        Button normalBake = new Button("Normal");
+        normalBake.setOnAction(e -> System.out.println("Normal bake pressed"));
+        normalBake.getStyleClass().add("bake-button");
+
+        Button crispyBake = new Button("Crispy");
+        crispyBake.setOnAction(e -> System.out.println("Crispy bake pressed"));
+        crispyBake.getStyleClass().add("bake-button");
+
+        HBox bakeOptions = new HBox(8, normalBake, crispyBake);
+        bakeOptions.setAlignment(Pos.CENTER); // Center buttons horizontally
+
+        Label bake = new Label("Bake");
+        bake.getStyleClass().add("heading-label");
+
+        VBox bakeBar = new VBox(bake, bakeOptions);
+        bakeBar.getStyleClass().add("operation-box");
+
+
+
+        //Slice HBox
+        Button slice4 = new Button("4");
+        slice4.setOnAction(e -> System.out.println("Slicing to 4"));
+        slice4.getStyleClass().add("slice-button");
+
+        Button slice6 = new Button("6");
+        slice6.setOnAction(e -> System.out.println("Slicing to 6"));
+        slice6.getStyleClass().add("slice-button");
+
+        Button slice8 = new Button("8");
+        slice8.setOnAction(e -> System.out.println("Slicing to 8"));
+        slice8.getStyleClass().add("slice-button");
+
+        HBox sliceOptions = new HBox(8, slice4, slice6, slice8);
+        sliceOptions.setAlignment(Pos.CENTER);
+
+        Label slice = new Label("Slice");
+        slice.getStyleClass().add("heading-label");
+
+        VBox sliceBar = new VBox (10, slice, sliceOptions);
+        sliceBar.getStyleClass().add("operation-box");
+
+
+
+        Button boxButton = new Button("Box");
+        boxButton.setOnAction(e -> System.out.println("Boxing pizza"));
+        boxButton.getStyleClass().add("end-button");
+
+        Button finishButton = new Button("Finish");
+        finishButton.setOnAction(e -> System.out.println("Finishing pizza"));
+        finishButton.getStyleClass().add("end-button");
+
+        HBox actionButtons = new HBox(10, boxButton, finishButton);
+        actionButtons.setAlignment(Pos.CENTER);
+
+        VBox layout = new VBox(20, bakeBar, sliceBar, actionButtons);
+        layout.setStyle("-fx-padding: 10; -fx-alignment: center; -fx-spacing: 10;");
+        return layout;
     }
 
     public HBox getHBox() {
