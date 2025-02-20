@@ -5,17 +5,21 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.jjspizzeria.jjspizzeria.themes.ThemeFactory;
+import org.jjspizzeria.jjspizzeria.themes.ThemeManager;
 import org.jjspizzeria.jjspizzeria.command.PizzaCommandInvoker;
 
 public class Main extends Application {
-    private TextArea consoleArea;
-    private GameConsole console;
+    TextArea consoleArea;
+    GameConsole console;
+    ThemeManager themeManager;
+
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -28,9 +32,11 @@ public class Main extends Application {
         consoleArea = console.getTextArea();
         PizzaCommandInvoker pizzaCommandInvoker = new PizzaCommandInvoker();
 
+        themeManager = ThemeManager.getInstance();
+        ThemeFactory currentTheme = themeManager.getCurrentTheme();
+
         // Banner
-        Image bannerImage = new Image(getClass().getResourceAsStream("images/banner.png"));
-        ImageView bannerView = new ImageView(bannerImage);
+        ImageView bannerView = currentTheme.createBanner();
         bannerView.setFitWidth(400);
         bannerView.setPreserveRatio(true);
 
@@ -49,12 +55,16 @@ public class Main extends Application {
         // Shift the console down so its top is behind the banner
         StackPane.setMargin(consoleArea, new Insets(60, 0, 0, 0));
 
+
         HBox hbox = pizzaCommandInvoker.getHBox();
 
         // Lay everything out
         BorderPane root = new BorderPane();
         root.setCenter(stackPane);
+
+        root.getStyleClass().add(currentTheme.getBackgroundCSSClass());
         root.setBottom(hbox);
+
 
         // Scene & stage
         Scene scene = new Scene(root, 760, 760);

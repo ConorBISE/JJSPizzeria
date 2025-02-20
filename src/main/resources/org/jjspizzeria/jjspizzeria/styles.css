@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("images/background.png");
+
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
     -fx-background-position: center;
@@ -63,6 +63,20 @@
     -fx-background-color: #ff8888;
 }
 
+.original-theme {
+    -fx-background-image: url("images/background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.easter-theme {
+    -fx-background-image: url("images/background-easter.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+
+
 .pizza-control-panel {
     -fx-background-color: #3b81c5;
     -fx-border-radius: 20px;
@@ -89,4 +103,5 @@
 .topping-button:hover {
     -fx-background-color: #2659a5;
     -fx-cursor: hand;
+
 }
