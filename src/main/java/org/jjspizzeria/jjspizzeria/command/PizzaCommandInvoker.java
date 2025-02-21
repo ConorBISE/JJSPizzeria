@@ -1,5 +1,8 @@
 package org.jjspizzeria.jjspizzeria.command;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -10,10 +13,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.util.Stack;
-
 public class PizzaCommandInvoker {
-    private final Stack<Command> undoStack = new Stack<>();
+    private final Deque<Command> undoStack = new ArrayDeque<>();
     private HBox hbox;
 
 
