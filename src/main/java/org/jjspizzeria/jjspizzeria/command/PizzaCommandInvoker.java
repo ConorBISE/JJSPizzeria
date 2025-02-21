@@ -4,8 +4,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -18,6 +16,7 @@ public class PizzaCommandInvoker {
     private final Stack<Command> undoStack = new Stack<>();
     private HBox hbox;
 
+
     public PizzaCommandInvoker() {
         hbox = new HBox(20);
         GridPane toppingBar = createToppingBar();
@@ -28,43 +27,41 @@ public class PizzaCommandInvoker {
         hbox.getStyleClass().add("pizza-control-panel");
     }
 
+    private Button createToppingButton(String buttonImageFilename) {
+        Button button = new Button("", createButtonIcon(buttonImageFilename));
+        button.getStyleClass().add("topping-button");
+        return button;
+    }
+
     private GridPane createToppingBar() {
         GridPane gridPane = new GridPane();
         gridPane.setHgap(7);
         gridPane.setVgap(7);
         gridPane.setPadding(new Insets(15));
 
-        Button cheeseButton = new Button("", createButtonIcon("cheese.png"));
+        Button cheeseButton = createToppingButton("cheese.png");
         cheeseButton.setOnAction(e -> executeCommand(new AddCheeseCommand()));
-        cheeseButton.getStyleClass().add("topping-button");
 
-        Button jalapenoButton = new Button("", createButtonIcon("jalapenos.png"));
+        Button jalapenoButton = createToppingButton("jalapenos.png");
         jalapenoButton.setOnAction(e -> executeCommand(new AddJalapenoCommand()));
-        jalapenoButton.getStyleClass().add("topping-button");
 
-        Button hamButton = new Button("", createButtonIcon("ham.png"));
+        Button hamButton = createToppingButton("ham.png");
         hamButton.setOnAction(e -> executeCommand(new AddHamCommand()));
-        hamButton.getStyleClass().add("topping-button");
 
-        Button mushroomButton = new Button("", createButtonIcon("mushrooms.png"));
+        Button mushroomButton = createToppingButton("mushrooms.png");
         mushroomButton.setOnAction(e -> executeCommand(new AddMushroomCommand()));
-        mushroomButton.getStyleClass().add("topping-button");
 
-        Button pineappleButton = new Button("", createButtonIcon("pineapple.png"));
+        Button pineappleButton = createToppingButton("pineapple.png");
         // pineappleButton.setOnAction(e -> executeCommand(new AddPineappleCommand()));
-        pineappleButton.getStyleClass().add("topping-button");
 
-        Button pepperoniButton = new Button("", createButtonIcon("pepperoni.png"));
+        Button pepperoniButton = createToppingButton("pepperoni.png");
         pepperoniButton.setOnAction(e -> executeCommand(new AddPepperoniCommand()));
-        pepperoniButton.getStyleClass().add("topping-button");
 
-        Button tomatoesButton = new Button("", createButtonIcon("tomato.png"));
+        Button tomatoesButton = createToppingButton("tomato.png");
         // tomatoesButton.setOnAction(e -> executeCommand(new AddTomatoCommand()));
-        tomatoesButton.getStyleClass().add("topping-button");
 
-        Button onionButton = new Button("", createButtonIcon("onions.png"));
+        Button onionButton = createToppingButton("onions.png");
         onionButton.setOnAction(e -> executeCommand(new AddOnionCommand()));
-        onionButton.getStyleClass().add("topping-button");
 
         Button undoButton = new Button("Undo");
         undoButton.setOnAction(e -> undoLastCommand());
