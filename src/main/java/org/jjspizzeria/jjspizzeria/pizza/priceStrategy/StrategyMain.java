@@ -1,4 +1,4 @@
-package org.jjspizzeria.jjspizzeria.pizza.priceStrategy;
+package org.jjspizzeria.jjspizzeria.pizza.pricestrategy;
 
 public class StrategyMain {
 
