@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import org.jjspizzeria.jjspizzeria.views.* ?>
+
+<BorderPane minWidth="760" minHeight="760">
+    <center>
+        <VBox alignment="center">
+            <Banner />
+            <Label text="Press any key to start!" textFill="white" />
+        </VBox>
+    </center>
+</BorderPane>
