@@ -52,4 +52,20 @@ public class CustomerTest {
         assertEquals("Wow, this pizza looks amazing! I can't wait to dig in!", happyPersonality.ratingDialogue(customer));
         assertEquals("Thanks so much for the pizza! Have a great day!! Goodbye :) ", happyPersonality.leavingDialogue(customer));
     }
+
+    @Test
+    public void testSelectCustomer() throws IOException {
+
+        DayCreator dayCreator = new DayCreator();
+
+        List<Customer> day1Customers = dayCreator.selectCustomer(1);
+        assertEquals(1, day1Customers.size(), "Day 1 should only have 1 customer");
+        assertEquals("John Smith", day1Customers.get(0).getName(), "Day 1 customer should be John Smith");
+
+        // Testing Day 2 (should return exactly 3 unique random customers)
+        List<Customer> day2Customers = dayCreator.selectCustomer(2);
+        assertEquals(3, day2Customers.size(), "Day 2 should have 3 customers");
+
+    }
+
 }

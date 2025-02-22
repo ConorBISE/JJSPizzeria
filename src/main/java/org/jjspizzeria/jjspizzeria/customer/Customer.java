@@ -21,6 +21,7 @@ public class Customer {
     public Order getOrder() {return order;}
     public Personality getPersonality(){return personality;}
     public static List<Customer> loadCustomers(String filePath) throws IOException {
+
         ObjectMapper objectMapper = new ObjectMapper();
         FileReader fileReader = new FileReader(filePath);
 
