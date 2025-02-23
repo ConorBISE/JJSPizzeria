@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 
 public class IconButton extends Component {
     private String icon;
+    private EventHandler<ActionEvent> onAction;
 
     public String getIcon() {
         return icon;
@@ -20,7 +21,6 @@ public class IconButton extends Component {
         this.icon = icon;
     }
 
-    private EventHandler<ActionEvent> onAction;
 
     public EventHandler<ActionEvent> getOnAction() {
         return onAction;
