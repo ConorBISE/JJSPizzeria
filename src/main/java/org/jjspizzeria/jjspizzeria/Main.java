@@ -2,6 +2,7 @@ package org.jjspizzeria.jjspizzeria;
 
 import java.io.IOException;
 
+import org.jjspizzeria.jjspizzeria.screens.GameScreen;
 import org.jjspizzeria.jjspizzeria.screens.WelcomeScreen;
 
 import javafx.application.Application;
@@ -14,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("JJ's Pizzeria");
 
-        Scene scene = new Scene(new WelcomeScreen());
+        Scene scene = new Scene(new GameScreen());
 
         scene.getStylesheets()
             .add(

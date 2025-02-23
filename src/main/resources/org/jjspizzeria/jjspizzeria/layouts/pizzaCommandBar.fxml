@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import org.jjspizzeria.jjspizzeria.components.* ?>
+
+<HBox spacing="20" minWidth="760" styleClass="pizza-control-panel">
+    <!-- Toppings grid -->
+    <GridPane hgap="7" vgap="7">
+        <padding>
+            <Insets>
+                <topRightBottomLeft>15</topRightBottomLeft>
+            </Insets>
+        </padding>
+
+        <children>
+            <IconButton imageFilename="cheese.png" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <IconButton imageFilename="jalapenos.png" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <IconButton imageFilename="ham.png" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <IconButton imageFilename="mushrooms.png" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            <IconButton imageFilename="pineapple.png" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+            <IconButton imageFilename="pepperoni.png" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            <IconButton imageFilename="tomato.png" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+            <IconButton imageFilename="onions.png" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+            <Button text="Undo" styleClass="topping-button" GridPane.rowIndex="2" GridPane.columnIndex="2" />
+        </children>
+    </GridPane>
+
+    <!-- Operations bar -->
+    <VBox spacing="20" style="-fx-padding: 10; -fx-alignment: center; -fx-spacing: 10;">
+        <!-- Bake box -->
+        <VBox styleClass="operation-box">
+            <Label text="Bake" styleClass="heading-label" />
+            <HBox spacing="8" alignment="center">
+                <Button text="Normal" styleClass="bake-button" />
+                <Button text="Crispy" styleClass="bake-button" />
+            </HBox>
+        </VBox>
+
+        <!-- Slice box -->
+        <VBox styleClass="operation-box">
+            <Label text="Slice" styleClass="heading-label" />
+            <HBox spacing="10" alignment="center">
+                <Button text="4" styleClass="slice-button" />
+                <Button text="6" styleClass="slice-button" />
+                <Button text="8" styleClass="slice-button" />
+            </HBox>
+        </VBox>
+
+        <!-- Action buttons -->
+        <HBox spacing="10" alignment="center">
+            <Button text="Box" styleClass="end-button" />
+            <Button text="Finish" styleClass="end-button" />
+        </HBox>
+    </VBox>
+</HBox>

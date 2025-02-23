@@ -1,33 +1,18 @@
 package org.jjspizzeria.jjspizzeria.framework;
 
-import java.io.IOException;
-
 import org.jjspizzeria.jjspizzeria.themes.ThemeManager;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 
-public abstract class Screen extends Component {
-
-    private String fxmlPath;
+public abstract class Screen extends FXMLComponent {
 
     protected Screen(String fxmlPath) {
-        this.fxmlPath = fxmlPath;
+        super(fxmlPath);
     }
 
     @Override
     protected Node getRoot() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-        loader.setController(this);
-        
-        Node root;
-        try {
-            root = loader.load(); 
-        } catch (IOException e) {
-            System.out.println("Error loading FXML " + fxmlPath);
-            e.printStackTrace();
-            return null;
-        }
+        Node root = super.getRoot();
 
         root.getStyleClass()
             .add(

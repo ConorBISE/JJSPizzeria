@@ -10,7 +10,6 @@
 <BorderPane minWidth="760" minHeight="760">
     <center>
         <StackPane alignment="CENTER" maxHeight="400" maxWidth="660">
-
             <Console StackPane.alignment="TOP_CENTER">
                 <StackPane.margin>
                     <Insets>
@@ -25,7 +24,7 @@
 
     <bottom>
         <HBox minWidth="760">
-            <PizzaCommandBox />
+            <PizzaCommandButtonGrid />
         </HBox>
     </bottom>
 </BorderPane>
