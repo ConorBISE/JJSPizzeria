@@ -1,8 +1,5 @@
 package org.jjspizzeria.jjspizzeria;
 
-import java.io.IOException;
-
-import org.jjspizzeria.jjspizzeria.screens.GameScreen;
 import org.jjspizzeria.jjspizzeria.screens.WelcomeScreen;
 
 import javafx.application.Application;
@@ -12,10 +9,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("JJ's Pizzeria");
 
-        Scene scene = new Scene(new GameScreen());
+        Scene scene = new Scene(new WelcomeScreen());
 
         scene.getStylesheets()
             .add(

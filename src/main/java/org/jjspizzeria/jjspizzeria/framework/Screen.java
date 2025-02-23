@@ -25,7 +25,10 @@ public abstract class Screen extends FXMLComponent {
         return root;
     }
 
+    protected void onNavigateAway() {}
+
     protected void navigate(Screen screen) {
+        onNavigateAway();
         getScene().setRoot(screen);
     }
 }

@@ -1,7 +1,5 @@
 package org.jjspizzeria.jjspizzeria.screens;
 
-import java.io.IOException;
-
 import org.jjspizzeria.jjspizzeria.GameConsole;
 import org.jjspizzeria.jjspizzeria.framework.Screen;
 

@@ -1,7 +1,6 @@
 package org.jjspizzeria.jjspizzeria.command;
 
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.PineappleDecorator;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.TomatoDecorator;
 
 public class AddTomatoCommand extends Command {
