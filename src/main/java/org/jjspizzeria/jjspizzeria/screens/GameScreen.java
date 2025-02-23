@@ -1,13 +1,13 @@
-package org.jjspizzeria.jjspizzeria.views;
+package org.jjspizzeria.jjspizzeria.screens;
 
 import java.io.IOException;
 
 import org.jjspizzeria.jjspizzeria.GameConsole;
-import org.jjspizzeria.jjspizzeria.framework.FXMLView;
+import org.jjspizzeria.jjspizzeria.framework.Screen;
 
-public class GameView extends FXMLView {
+public class GameScreen extends Screen {
 
-    public GameView() throws IOException {
+    public GameScreen() {
         super("/org/jjspizzeria/jjspizzeria/layouts/game.fxml");
         GameConsole.getInstance().append("Welcome to JJ's pizzeria!");
     }

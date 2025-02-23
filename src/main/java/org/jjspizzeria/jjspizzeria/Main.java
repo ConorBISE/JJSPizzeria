@@ -2,22 +2,29 @@ package org.jjspizzeria.jjspizzeria;
 
 import java.io.IOException;
 
-import org.jjspizzeria.jjspizzeria.framework.View;
-import org.jjspizzeria.jjspizzeria.views.GameView;
-import org.jjspizzeria.jjspizzeria.views.WelcomeView;
+import org.jjspizzeria.jjspizzeria.screens.WelcomeScreen;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("JJ's Pizzeria");
 
-        View view = new WelcomeView();
-        view.show(primaryStage);
+        Scene scene = new Scene(new WelcomeScreen());
+
+        scene.getStylesheets()
+            .add(
+                getClass()
+                .getResource("/org/jjspizzeria/jjspizzeria/styles.css")
+                .toExternalForm()
+            );
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

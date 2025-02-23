@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import org.jjspizzeria.jjspizzeria.views.* ?>
+<?import org.jjspizzeria.jjspizzeria.components.* ?>
 
 <BorderPane minWidth="760" minHeight="760">
     <center>
