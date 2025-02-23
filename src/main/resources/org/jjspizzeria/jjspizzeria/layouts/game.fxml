@@ -24,7 +24,7 @@
 
     <bottom>
         <HBox minWidth="760">
-            <PizzaCommandButtonGrid />
+            <PizzaCommandBar />
         </HBox>
     </bottom>
 </BorderPane>
