@@ -6,6 +6,7 @@
 <?import javafx.scene.text.*?>
 
 <?import org.jjspizzeria.jjspizzeria.components.* ?>
+<?import org.jjspizzeria.jjspizzeria.command.* ?>
 
 <HBox spacing="20" minWidth="760" styleClass="pizza-control-panel">
     <!-- Toppings grid -->
@@ -17,15 +18,15 @@
         </padding>
 
         <children>
-            <IconButton imageFilename="cheese.png" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <IconButton imageFilename="jalapenos.png" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-            <IconButton imageFilename="ham.png" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-            <IconButton imageFilename="mushrooms.png" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-            <IconButton imageFilename="pineapple.png" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-            <IconButton imageFilename="pepperoni.png" GridPane.rowIndex="2" GridPane.columnIndex="1" />
-            <IconButton imageFilename="tomato.png" GridPane.rowIndex="0" GridPane.columnIndex="2" />
-            <IconButton imageFilename="onions.png" GridPane.rowIndex="1" GridPane.columnIndex="2" />
-            <Button text="Undo" styleClass="topping-button" GridPane.rowIndex="2" GridPane.columnIndex="2" />
+            <IconButton icon="cheese" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <IconButton icon="jalapenos" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <IconButton icon="ham" onAction="#onAddTopping" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <IconButton icon="mushrooms" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            <IconButton icon="pineapple" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+            <IconButton icon="pepperoni" onAction="#onAddTopping" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            <IconButton icon="tomato" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+            <IconButton icon="onions" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+            <Button text="Undo" onAction="#undoLastCommand" styleClass="topping-button" GridPane.rowIndex="2" GridPane.columnIndex="2" />
         </children>
     </GridPane>
 
@@ -35,8 +36,8 @@
         <VBox styleClass="operation-box">
             <Label text="Bake" styleClass="heading-label" />
             <HBox spacing="8" alignment="center">
-                <Button text="Normal" styleClass="bake-button" />
-                <Button text="Crispy" styleClass="bake-button" />
+                <Button text="Normal" onAction="#bakeNormal" styleClass="bake-button" />
+                <Button text="Crispy" onAction="#bakeCrispy" styleClass="bake-button" />
             </HBox>
         </VBox>
 
@@ -44,16 +45,16 @@
         <VBox styleClass="operation-box">
             <Label text="Slice" styleClass="heading-label" />
             <HBox spacing="10" alignment="center">
-                <Button text="4" styleClass="slice-button" />
-                <Button text="6" styleClass="slice-button" />
-                <Button text="8" styleClass="slice-button" />
+                <Button text="4" onAction="#slice4" styleClass="slice-button" />
+                <Button text="6" onAction="#slice6" styleClass="slice-button" />
+                <Button text="8" onAction="#slice8" styleClass="slice-button" />
             </HBox>
         </VBox>
 
         <!-- Action buttons -->
         <HBox spacing="10" alignment="center">
-            <Button text="Box" styleClass="end-button" />
-            <Button text="Finish" styleClass="end-button" />
+            <Button text="Box" onAction="#box" styleClass="end-button" />
+            <Button text="Finish" onAction="#finish" styleClass="end-button" />
         </HBox>
     </VBox>
 </HBox>

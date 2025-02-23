@@ -1,27 +1,82 @@
 package org.jjspizzeria.jjspizzeria.components;
 
+import java.util.Map;
 import java.util.Stack;
 
-import org.jjspizzeria.jjspizzeria.command.AddCheeseCommand;
-import org.jjspizzeria.jjspizzeria.command.AddHamCommand;
-import org.jjspizzeria.jjspizzeria.command.AddJalapenoCommand;
-import org.jjspizzeria.jjspizzeria.command.AddMushroomCommand;
-import org.jjspizzeria.jjspizzeria.command.AddOnionCommand;
-import org.jjspizzeria.jjspizzeria.command.AddPepperoniCommand;
-import org.jjspizzeria.jjspizzeria.command.Command;
+import org.jjspizzeria.jjspizzeria.command.*;
 import org.jjspizzeria.jjspizzeria.framework.FXMLComponent;
 
-import javafx.scene.layout.HBox;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 public class PizzaCommandBar extends FXMLComponent {
 
     private final Stack<Command> undoStack = new Stack<>();
-    private HBox hbox;
+
+    private Map<String, Command> toppingCommandMapping;
 
     public PizzaCommandBar() {
         super("/org/jjspizzeria/jjspizzeria/layouts/pizzaCommandBar.fxml");
     
-        // TODO: re-add command handling logic
+        toppingCommandMapping = Map.of(
+            "cheese", new AddCheeseCommand(),
+            "jalapenos", new AddJalapenoCommand(),
+            "ham", new AddHamCommand(),
+            "mushrooms", new AddMushroomCommand(),
+            "pineapple", new AddPineappleCommand(),
+            "pepperoni", new AddPepperoniCommand(),
+            "tomato", new AddTomatoCommand(),
+            "onions", new AddOnionCommand()
+        );
+    }
+
+    @FXML
+    private void onAddTopping(ActionEvent e) {
+        Button inner = (Button)e.getSource();
+        IconButton outer = (IconButton)inner.getParent();
+        executeCommand(toppingCommandMapping.get(outer.getIcon()));
+    }
+    
+    @FXML
+    private void bakeNormal() {
+        // TODO
+        System.out.println("Bake normal");
+    }
+
+    @FXML
+    private void bakeCrispy() {
+        // TODO
+        System.out.println("Bake crispy");
+    }
+
+    @FXML
+    private void slice4() {
+        // TODO
+        System.out.println("Slicing to 4");
+    }
+
+    @FXML
+    private void slice6() {
+        // TODO
+        System.out.println("Slicing to 6");
+    }
+
+    @FXML
+    private void slice8() {
+        // TODO
+        System.out.println("Slicing to 8");
+    }
+
+    @FXML
+    private void box() {
+        // TODO
+        System.out.println("Boxing pizza");
+    }
+
+    @FXML
+    private void finish() {
+        System.out.println("Finishing pizza");
     }
 
     public void executeCommand(Command command) {

@@ -2,6 +2,7 @@ module org.jjspizzeria.jjspizzeria {
     requires javafx.controls;
     requires javafx.fxml;
     requires transitive javafx.graphics;
+    requires javafx.base;
 
     opens org.jjspizzeria.jjspizzeria to javafx.fxml;
     opens org.jjspizzeria.jjspizzeria.components to javafx.fxml;
