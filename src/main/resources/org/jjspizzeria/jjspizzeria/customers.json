@@ -1,0 +1,92 @@
+[
+  {
+    "name": "John Smith",
+    "order": {
+      "toppings": ["Cheese","Pepperoni"],
+      "slices": 6,
+      "bakingPreference": "Normal"
+    },
+    "type": "HAPPY"
+  },
+  {
+    "name": "Joe the Cowboy",
+    "order": {
+      "toppings": ["Cheese","Ham", "Onion"],
+      "slices": 8,
+      "bakingPreference": "Crispy"
+    },
+    "type": "HAPPY"
+  },
+  {
+  "name": "Mia Borko",
+  "order": {
+    "toppings": ["Cheese","Pepperoni","Ham"],
+    "slices": 6,
+    "bakingPreference": "Crispy"
+  },
+  "type": "HAPPY"
+},
+  {
+    "name": "Jim the gym teacher",
+    "order": {
+      "toppings": ["Cheese","Pepperoni", "Jalapeno", "Pineapple"],
+      "slices": 4,
+      "bakingPreference": "Normal"
+    },
+    "type": "HAPPY"
+  },
+  {
+    "name": "Alison",
+    "order": {
+      "toppings": ["Cheese","Tomato","Mushroom"],
+      "slices": 4,
+      "bakingPreference": "Normal"
+    },
+    "type": "NEUTRAL"
+  },
+  {
+  "name": "Sir Cheddar the Mouse",
+  "order": {
+    "toppings": ["Cheese", "Ham"],
+    "slices": 8,
+    "bakingPreference": "Crispy"
+  },
+  "type": "NEUTRAL"
+  },
+  {
+    "name": "Jacqueline ",
+    "order": {
+      "toppings": ["Cheese","Pineapple","Mushroom","Onion"],
+      "slices": 6,
+      "bakingPreference": "Crispy"
+    },
+    "type": "NEUTRAL"
+  },
+  {
+    "name": "Little Timmy",
+    "order": {
+      "toppings": ["Cheese","Pineapple","Mushroom","Onion","Jalapeno"],
+      "slices": 4,
+      "bakingPreference": "Normal"
+    },
+    "type": "ANGRY"
+  },
+  {
+    "name": "Karen",
+    "order": {
+      "toppings": ["Cheese","Pepperoni","Tomato"],
+      "slices": 4,
+      "bakingPreference": "Crispy"
+    },
+    "type": "ANGRY"
+  },
+  {
+    "name": "Kevin",
+    "order": {
+      "toppings": ["Cheese","Ham","Onion","Mushroom"],
+      "slices": 8,
+      "bakingPreference": "Normal"
+    },
+    "type": "ANGRY"
+  }
+]
