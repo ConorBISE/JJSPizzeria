@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import org.jjspizzeria.jjspizzeria.components.* ?>
+<?import org.jjspizzeria.jjspizzeria.command.* ?>
+
+<HBox spacing="20" minWidth="760" styleClass="pizza-control-panel">
+    <!-- Toppings grid -->
+    <GridPane hgap="7" vgap="7">
+        <padding>
+            <Insets>
+                <topRightBottomLeft>15</topRightBottomLeft>
+            </Insets>
+        </padding>
+
+        <children>
+            <IconButton icon="cheese" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <IconButton icon="jalapenos" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <IconButton icon="ham" onAction="#onAddTopping" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <IconButton icon="mushrooms" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            <IconButton icon="pineapple" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+            <IconButton icon="pepperoni" onAction="#onAddTopping" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            <IconButton icon="tomato" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+            <IconButton icon="onions" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+            <Button text="Undo" onAction="#undoLastCommand" styleClass="topping-button" GridPane.rowIndex="2" GridPane.columnIndex="2" />
+        </children>
+    </GridPane>
+
+    <!-- Operations bar -->
+    <VBox spacing="20" style="-fx-padding: 10; -fx-alignment: center; -fx-spacing: 10;">
+        <!-- Bake box -->
+        <VBox styleClass="operation-box">
+            <Label text="Bake" styleClass="heading-label" />
+            <HBox spacing="8" alignment="center">
+                <Button text="Normal" onAction="#bakeNormal" styleClass="bake-button" />
+                <Button text="Crispy" onAction="#bakeCrispy" styleClass="bake-button" />
+            </HBox>
+        </VBox>
+
+        <!-- Slice box -->
+        <VBox styleClass="operation-box">
+            <Label text="Slice" styleClass="heading-label" />
+            <HBox spacing="10" alignment="center">
+                <Button text="4" onAction="#slice4" styleClass="slice-button" />
+                <Button text="6" onAction="#slice6" styleClass="slice-button" />
+                <Button text="8" onAction="#slice8" styleClass="slice-button" />
+            </HBox>
+        </VBox>
+
+        <!-- Action buttons -->
+        <HBox spacing="10" alignment="center">
+            <Button text="Box" onAction="#box" styleClass="end-button" />
+            <Button text="Finish" onAction="#finish" styleClass="end-button" />
+        </HBox>
+    </VBox>
+</HBox>
