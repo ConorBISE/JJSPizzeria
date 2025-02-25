@@ -9,10 +9,10 @@ public class DayCreator {
     private List<Customer> allCustomers;
     private Random random;
     private List<Customer> customersForTheDay;
-    private static final String FILE_PATH = "src/main/resources/org/jjspizzeria/jjspizzeria/customers.json";
+    private static final String RESOURCE_PATH = "/org/jjspizzeria/jjspizzeria/customers.json";
 
     public DayCreator() throws IOException{
-        this.allCustomers = Customer.loadCustomers(FILE_PATH);
+        this.allCustomers = Customer.loadCustomers(RESOURCE_PATH);
         this.random = new Random();
         this.customersForTheDay = new ArrayList<>();
     }

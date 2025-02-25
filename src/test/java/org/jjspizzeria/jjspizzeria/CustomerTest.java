@@ -20,8 +20,8 @@ public class CustomerTest {
 
     @Test
     public void testLoadCustomers() throws IOException{
-      String filepath =   "src/main/resources/org/jjspizzeria/jjspizzeria/customers.json";
-        List<Customer> customers = Customer.loadCustomers(filepath);
+        String resourcePath =   "/org/jjspizzeria/jjspizzeria/customers.json";
+        List<Customer> customers = Customer.loadCustomers(resourcePath);
 
         // Test that the list of customers is loaded correctly
         assertEquals(10, customers.size());

@@ -8,7 +8,7 @@ public class AngryDialogue implements Personality{
 
     @Override
     public String ratingDialogue(Customer customer) {
-        return "This pizza looks kinda shit. Does it always look like this?!";
+        return "This pizza looks awful. Does it always look like this?!";
     }
 
     @Override

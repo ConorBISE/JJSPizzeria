@@ -2,6 +2,7 @@ package org.jjspizzeria.jjspizzeria.customer;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,13 +21,16 @@ public class Customer {
     public String getName() {return name;}
     public Order getOrder() {return order;}
     public Personality getPersonality(){return personality;}
-    public static List<Customer> loadCustomers(String filePath) throws IOException {
-
+    public static List<Customer> loadCustomers(String resourcePath) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        FileReader fileReader = new FileReader(filePath);
+
+        InputStream inputStream = Customer.class.getResourceAsStream(resourcePath);
+        if (inputStream == null) {
+            throw new IOException("Resource not found: " + resourcePath);
+        }
 
         // reads JSON content into JsonNode
-        JsonNode root = objectMapper.readTree(fileReader);
+        JsonNode root = objectMapper.readTree(inputStream);
         List<Customer> customers = new ArrayList<>();
 
         for (JsonNode node : root) {
@@ -45,8 +49,6 @@ public class Customer {
 
             customers.add(new Customer(name, order, personality));
         }
-
-        fileReader.close(); // Close the FileReader after use
         return customers;
     }
 
