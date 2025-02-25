@@ -96,6 +96,10 @@ public class DayCreator {
 
     }
 
+    public void setDay(int day){
+        this.day = day;
+    }
+
 
     // this is how i imagine the game class goes -> leaving this here as thoughts until game class created i guess ;)
 //    public void start() {

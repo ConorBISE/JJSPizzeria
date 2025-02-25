@@ -63,6 +63,7 @@ public class CustomerTest {
         assertEquals("John Smith", day1Customers.get(0).getName(), "Day 1 customer should be John Smith");
 
         // Testing Day 2 (should return exactly 3 unique random customers)
+        dayCreator.setDay(2);
         List<Customer> day2Customers = dayCreator.selectCustomer();
         assertEquals(3, day2Customers.size(), "Day 2 should have 3 customers");
 
