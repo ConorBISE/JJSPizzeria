@@ -17,6 +17,12 @@ public class GameConsole {
         textArea.setEditable(false);
         textArea.setWrapText(true);
         textArea.getStyleClass().add("console");
+    
+        textArea.setMinWidth(660);
+        textArea.setMinHeight(340);
+
+        textArea.setMaxWidth(660);
+        textArea.setMaxHeight(340);
     }
 
     /**

@@ -14,6 +14,8 @@ public class OriginalTheme implements ThemeFactory{
     public ImageView createBanner() {
         Image bannerImage = new Image(getClass().getResourceAsStream("/org/jjspizzeria/jjspizzeria/images/banner.png"));
         ImageView bannerView = new ImageView(bannerImage);
+        bannerView.setFitWidth(400);
+        bannerView.setPreserveRatio(true);
         return bannerView;
     }
 

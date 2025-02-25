@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import org.jjspizzeria.jjspizzeria.components.* ?>
+
+<BorderPane minWidth="760" minHeight="760">
+    <center>
+        <StackPane alignment="CENTER" maxHeight="400" maxWidth="660">
+            <Console StackPane.alignment="TOP_CENTER">
+                <StackPane.margin>
+                    <Insets>
+                        <top>60</top>
+                    </Insets>
+                </StackPane.margin>
+            </Console>
+
+            <Banner StackPane.alignment="TOP_CENTER"/>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <HBox minWidth="760">
+            <PizzaCommandBar />
+        </HBox>
+    </bottom>
+</BorderPane>
