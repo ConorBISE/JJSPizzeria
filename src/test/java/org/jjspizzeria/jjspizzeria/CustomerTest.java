@@ -56,7 +56,7 @@ public class CustomerTest {
     @Test
     public void testSelectCustomer() throws IOException {
 
-        DayCreator dayCreator = new DayCreator();
+        DayCreator dayCreator = new DayCreator(1);
 
         List<Customer> day1Customers = dayCreator.selectCustomer(1);
         assertEquals(1, day1Customers.size(), "Day 1 should only have 1 customer");
