@@ -36,7 +36,7 @@ public class GameConsole {
     }
 
     /**
-     * Appends text to the console's TextArea.
+     * Appends text to the console’s TextArea.
      */
     public void append(String text) {
         //  TODO: If needed, wrap this in Platform.runLater(...)
@@ -46,7 +46,7 @@ public class GameConsole {
     }
 
     /**
-     * Exposes the console's TextArea, so it can be placed in the scene.
+     * Exposes the console’s TextArea, so it can be placed in the scene.
      */
     public TextArea getTextArea() {
         return textArea;
