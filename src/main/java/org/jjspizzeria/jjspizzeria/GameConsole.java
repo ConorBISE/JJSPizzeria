@@ -51,4 +51,8 @@ public class GameConsole {
     public TextArea getTextArea() {
         return textArea;
     }
+
+    public static void setTestInstance(GameConsole testInstance) {
+        instance = testInstance;
+    }
 }

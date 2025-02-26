@@ -30,6 +30,13 @@ public class PizzaManager {
         return instance;
     }
 
+    /**
+     * Resets the singleton instance - used for testing
+     */
+    public static void resetInstance() {
+        instance = null;
+    }
+
     public Pizza getPizza() {
         return pizza;
     }
@@ -144,5 +151,20 @@ public class PizzaManager {
             gameConsole.append("You can't box the pizza until it's been sliced!");
         }
     }
+
+    public PizzaState getPizzaState(){
+        return this.state;
+    }
+
+    public void reset() {
+        this.pizza = new BasePizza();
+        this.state = PizzaState.UNBAKED;
+        if (this.bakingTimer != null) {
+            this.bakingTimer.cancel();
+            this.bakingTimer = null;
+        }
+    }
+
+
 
 }
