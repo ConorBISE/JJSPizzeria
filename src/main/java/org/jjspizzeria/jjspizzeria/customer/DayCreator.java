@@ -1,5 +1,10 @@
 package org.jjspizzeria.jjspizzeria.customer;
 
+import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.MidWeekPricing;
+import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PriceCalculator;
+import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PricingStrategy;
+import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.RegularPricing;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +15,27 @@ public class DayCreator {
     private Random random;
     private List<Customer> customersForTheDay;
     private static final String RESOURCE_PATH = "/org/jjspizzeria/jjspizzeria/customers.json";
+    private int day;
+    private PricingStrategy discountPricing;
+    private PricingStrategy regularPricing;
 
-    public DayCreator() throws IOException{
+    private PriceCalculator calculator;
+
+    public DayCreator(int day) throws IOException{
         this.allCustomers = Customer.loadCustomers(RESOURCE_PATH);
         this.random = new Random();
         this.customersForTheDay = new ArrayList<>();
+        this.day = day;
+        this.discountPricing = new MidWeekPricing();
+        this.regularPricing = new RegularPricing();
+        this.calculator = new PriceCalculator(this.regularPricing);
+
     }
 
-    public List<Customer> selectCustomer(int day){
+    public List<Customer> selectCustomer(){
         customersForTheDay.clear(); //resets customers for a new day
 
-        if(day == 1){
+        if(this.day == 1){
             //so that every player will see this customer on day 1
             customersForTheDay.add(allCustomers.get(0));
 
@@ -65,6 +80,24 @@ public class DayCreator {
             return customersForTheDay.remove(0); // removes and returns the first customer
         }
         return null; // no more customers
+    }
+
+    public double calculatePrice(double basePrice){
+        int[] midWeekDays = {2,3,4};
+        for (int day : midWeekDays) {
+            if (this.day == day) {
+                this.calculator.setStrategy(this.discountPricing);
+                return this.calculator.calculatePrice(basePrice);
+            }
+        }
+        this.calculator.setStrategy(this.regularPricing);
+        return this.calculator.calculatePrice(basePrice);
+
+
+    }
+
+    public void setDay(int day){
+        this.day = day;
     }
 
 
