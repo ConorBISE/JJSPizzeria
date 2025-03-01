@@ -10,11 +10,11 @@ public class PepperoniDecorator extends ToppingDecorator {
     //Constructor
     public PepperoniDecorator(Pizza pizza) {
         super(pizza);
-        pepperoni = new Topping("Pepperoni", 2, "pepperoni.png");
+        pepperoni = new Topping("Pepperoni", 2, "pepperoni-topping.png");
     }
 
     public PepperoniDecorator() {
-        pepperoni = new Topping("Pepperoni", 2, "pepperoni.png");
+        pepperoni = new Topping("Pepperoni", 2, "pepperoni-topping.png");
     }
 
     //Getters

@@ -11,11 +11,11 @@ public class TomatoDecorator extends ToppingDecorator {
     //Constructor
     public TomatoDecorator(Pizza pizza) {
         super(pizza);
-        tomato = new Topping("Tomato", 1.50, "tomato.png");
+        tomato = new Topping("Tomato", 1.50, "tomato-topping.png");
     }
 
     public TomatoDecorator() {
-        tomato = new Topping("Tomato", 1.0, "tomato.png");
+        tomato = new Topping("Tomato", 1.0, "tomato-topping.png");
     }
 
     //Getters

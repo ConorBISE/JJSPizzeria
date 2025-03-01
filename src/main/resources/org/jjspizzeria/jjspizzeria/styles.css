@@ -79,10 +79,11 @@
 
 .pizza-control-panel {
     -fx-background-color: #3b81c5;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-border-radius: 20 20 0 0;
+    -fx-background-radius: 20 20 0 0;
     -fx-border-width: 2px;
     -fx-border-color: #2c6fb1;
+    -fx-alignment: center;
 }
 
 
