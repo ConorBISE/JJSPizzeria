@@ -1,9 +1,12 @@
 package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
 public class BakeDecorator extends OperationDecorator{
-    String bakeType;
+    private final String bakeType;
     public BakeDecorator(Pizza pizza, String bakeType) {
         super(pizza);
+        this.bakeType = bakeType;
+    }
+    public BakeDecorator(String bakeType) {
         this.bakeType = bakeType;
     }
 
@@ -11,7 +14,8 @@ public class BakeDecorator extends OperationDecorator{
         return pizza.getDescription() + " " + bakeType + " baked";
     }
 
-    public double getCost(){
-        return pizza.getCost();
+
+    public String getBakeType() {
+        return bakeType;
     }
 }

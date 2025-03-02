@@ -1,10 +1,13 @@
 package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
 public class SliceDecorator extends OperationDecorator{
-    int slices;
+    private final int slices;
 
     public SliceDecorator(Pizza pizza, int slices) {
         super(pizza);
+        this.slices = slices;
+    }
+    public SliceDecorator(int slices) {
         this.slices = slices;
     }
 
@@ -12,8 +15,8 @@ public class SliceDecorator extends OperationDecorator{
         return pizza.getDescription() + " cut into " + slices + " slices";
     }
 
-    public double getCost(){
-        return pizza.getCost();
+    public int getSlices(){
+        return slices;
     }
 
 
