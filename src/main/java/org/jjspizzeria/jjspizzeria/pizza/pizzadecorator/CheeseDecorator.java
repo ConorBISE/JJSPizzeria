@@ -11,11 +11,11 @@ public class CheeseDecorator extends ToppingDecorator {
     //Constructor
     public CheeseDecorator(Pizza pizza) {
         super(pizza);
-        cheese = new Topping("Cheese", 1.50, "cheese.png");
+        cheese = new Topping("Cheese", 1.50, "cheese-topping.png");
     }
 
     public CheeseDecorator() {
-        cheese = new Topping("Cheese", 1.50, "cheese.png");
+        cheese = new Topping("Cheese", 1.50, "cheese-topping.png");
     }
 
     //Getters

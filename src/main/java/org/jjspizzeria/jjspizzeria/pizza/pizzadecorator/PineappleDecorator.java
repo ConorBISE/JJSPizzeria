@@ -11,11 +11,11 @@ public class PineappleDecorator extends ToppingDecorator {
     //Constructor
     public PineappleDecorator(Pizza pizza) {
         super(pizza);
-        pineapple = new Topping("Pineapple", 1.50, "pineapple.png");
+        pineapple = new Topping("Pineapple", 1.50, "pineapple-topping.png");
     }
 
     public PineappleDecorator() {
-        pineapple = new Topping("Pineapple", 1.0, "pineapple.png");
+        pineapple = new Topping("Pineapple", 1.0, "pineapple-topping.png");
     }
 
     //Getters

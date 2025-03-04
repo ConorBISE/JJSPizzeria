@@ -70,36 +70,36 @@ public class PizzaManagerTest {
 
     @Test
     public void testBakePizza() {
-        pizzaManager.bakePizza(1);
-        assertEquals(PizzaState.BAKING, pizzaManager.getPizzaState());
+        pizzaManager.bakePizza("crispy");
+        assertEquals(PizzaState.BAKED, pizzaManager.getPizzaState());
     }
 
     @Test
     public void testSlicePizzaBeforeBaking() {
-        pizzaManager.slicePizza();
+        pizzaManager.slicePizza(6);
         verify(mockConsole).append("You can't slice the pizza right now!");
     }
 
     @Test
     public void testSlicePizzaAfterBaking() throws InterruptedException {
-        pizzaManager.bakePizza(1);
+        pizzaManager.bakePizza("crispy");
         Thread.sleep(1500);
-        pizzaManager.slicePizza();
+        pizzaManager.slicePizza(6);
         assertEquals(PizzaState.SLICED, pizzaManager.getPizzaState());
     }
 
     @Test
     public void testBoxPizzaBeforeSlicing() {
-        pizzaManager.bakePizza(1);
+        pizzaManager.bakePizza("crispy");
         pizzaManager.boxPizza();
         verify(mockConsole).append("You can't box the pizza until it's been sliced!");
     }
 
     @Test
     public void testBoxPizzaAfterSlicing() throws InterruptedException {
-        pizzaManager.bakePizza(1);
+        pizzaManager.bakePizza("crispy");
         Thread.sleep(1500);
-        pizzaManager.slicePizza();
+        pizzaManager.slicePizza(6);
         pizzaManager.boxPizza();
         assertEquals(PizzaState.BOXED, pizzaManager.getPizzaState());
     }

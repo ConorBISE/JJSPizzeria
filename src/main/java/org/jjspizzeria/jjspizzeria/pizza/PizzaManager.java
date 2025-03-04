@@ -1,18 +1,24 @@
 package org.jjspizzeria.jjspizzeria.pizza;
+import org.jjspizzeria.jjspizzeria.pizza.observer.PizzaObserver;
+import org.jjspizzeria.jjspizzeria.pizza.observer.Subject;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.*;
 
 import org.jjspizzeria.jjspizzeria.GameConsole;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.List;
 
-public class PizzaManager {
+public class PizzaManager implements Subject {
 
     private static PizzaManager instance;
     private Pizza pizza; // Top of the decorator chain
     private PizzaState state;
     private Timer bakingTimer;
     private final GameConsole gameConsole;
+
+    private final List<PizzaObserver> observers = new ArrayList<>();
 
     private PizzaManager() {
         this.pizza = new BasePizza();
@@ -74,7 +80,7 @@ public class PizzaManager {
             toppingDecorator.setPizza(pizza);
             this.pizza = toppingDecorator;
             gameConsole.append("Added " + toppingDecorator.getTopping().getName() + " to the Pizza!");
-
+            notifyObservers();
             // TODO: add the topping image to the pizza
         } else {
             gameConsole.append("You can't add toppings anymore!");
@@ -90,6 +96,7 @@ public class PizzaManager {
                 // 'un-decorate' by returning the wrapped pizza
                 gameConsole.append("Removing " + top.getTopping().getName() + " from the Pizza!");
                 this.pizza = top.getPizza();
+                notifyObservers();
 
                 // TODO: remove top png
             } else {
@@ -104,34 +111,29 @@ public class PizzaManager {
      * Start baking the pizza.
      * Baking transitions from UNBAKED -> BAKING, and after a timer it goes to BAKED.
      */
-    public void bakePizza(int bakingTimeSeconds) {
+    public void bakePizza(String bakeStyle) {
         if (state != PizzaState.UNBAKED) {
             gameConsole.append("The Pizza has already been baked!");
             return;
         }
 
-        gameConsole.append("Baking pizza for " + bakingTimeSeconds + " seconds...");
-        state = PizzaState.BAKING;
+        gameConsole.append("Baking the pizza " + bakeStyle + " style!");
 
-        // TODO: refactor this cause idk
-        // Create a Timer to simulate baking
-        bakingTimer = new Timer();
-        bakingTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                // After the specified delay, move to BAKED state
-                state = PizzaState.BAKED;
-                gameConsole.append("Pizza is now BAKED!");
-            }
-        }, bakingTimeSeconds * 1000L);
+        // TODO: somehow simulate time and play some ticking sound effect for 3 seconds while the pizza is baking
+        // For now we will skip this and just immediately change states
+        state = PizzaState.BAKING;
+        notifyObservers();
+        state = PizzaState.BAKED;
+        notifyObservers();
     }
 
     /**
      * Once the pizza is in BAKED state, you can slice it.
      */
-    public void slicePizza() {
+    public void slicePizza(int slices) {
         if (state == PizzaState.BAKED) {
             state = PizzaState.SLICED;
+            notifyObservers();
             // TODO: overlay a "slice.png" or do any slicing logic
             gameConsole.append("Pizza has been sliced.");
         } else {
@@ -145,6 +147,7 @@ public class PizzaManager {
     public void boxPizza() {
         if (state == PizzaState.SLICED) {
             state = PizzaState.BOXED;
+            notifyObservers();
             // TODO: overlay a "box.png" or do final packaging logic
             gameConsole.append("Pizza has been boxed! Please hand the pizza over to the customer");
         } else {
@@ -167,4 +170,20 @@ public class PizzaManager {
 
 
 
+    @Override
+    public void addObserver(PizzaObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(PizzaObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (PizzaObserver observer : observers) {
+            observer.onPizzaChanged(pizza, state);
+        }
+    }
 }
