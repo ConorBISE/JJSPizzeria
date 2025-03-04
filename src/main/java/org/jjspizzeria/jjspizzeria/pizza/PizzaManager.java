@@ -36,6 +36,13 @@ public class PizzaManager implements Subject {
         return instance;
     }
 
+    /**
+     * Resets the singleton instance - used for testing
+     */
+    public static void resetInstance() {
+        instance = null;
+    }
+
     public Pizza getPizza() {
         return pizza;
     }
@@ -147,6 +154,21 @@ public class PizzaManager implements Subject {
             gameConsole.append("You can't box the pizza until it's been sliced!");
         }
     }
+
+    public PizzaState getPizzaState(){
+        return this.state;
+    }
+
+    public void reset() {
+        this.pizza = new BasePizza();
+        this.state = PizzaState.UNBAKED;
+        if (this.bakingTimer != null) {
+            this.bakingTimer.cancel();
+            this.bakingTimer = null;
+        }
+    }
+
+
 
     @Override
     public void addObserver(PizzaObserver observer) {
