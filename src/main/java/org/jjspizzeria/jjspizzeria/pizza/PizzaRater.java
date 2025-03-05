@@ -2,24 +2,34 @@ package org.jjspizzeria.jjspizzeria.pizza;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.BakeDecorator;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.BasePizza;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.HamDecorator;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.JalapenoDecorator;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.PineappleDecorator;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.Pizza;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.PizzaDecorator;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.SliceDecorator;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.Topping;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.ToppingDecorator;
 
 public class PizzaRater {
 
-    private static List<Topping> getPizzaToppings(Pizza pizza) {        
+    @SuppressWarnings("unchecked")
+    private static <T extends PizzaDecorator> List<T> getPizzaDecorators(Pizza pizza, Class<T> clazz) {
         Pizza current = pizza;
-        List<Topping> list = new ArrayList<>();
+        List<T> list = new ArrayList<>();
 
-        while (current instanceof ToppingDecorator) {
-            ToppingDecorator currentDecorator = (ToppingDecorator) current;
-            list.add(currentDecorator.getTopping());
+        while (current instanceof PizzaDecorator) {
+            PizzaDecorator currentDecorator = (PizzaDecorator) current;
+    
+            if (clazz.isAssignableFrom(currentDecorator.getClass())) {
+                // Type safety: we've just made sure this decorator is an instance of T
+                // (at least at compile time)
+                list.add((T) currentDecorator);
+            }
+                
             current = currentDecorator.getPizza();
         }
 
@@ -27,10 +37,19 @@ public class PizzaRater {
     }
 
     public static double pizzaScore(Pizza ordered, Pizza made) {
-        List<Topping> orderedToppings = getPizzaToppings(ordered);
-        List<Topping> madeToppings = getPizzaToppings(made);
-
         int mistakes = 0;
+
+        // Count mistakes in toppings
+        List<Topping> orderedToppings = getPizzaDecorators(ordered, ToppingDecorator.class)
+            .stream()
+            .map(d -> d.getTopping())
+            .collect(Collectors.toList());
+
+        List<Topping> madeToppings = getPizzaDecorators(made, ToppingDecorator.class)
+            .stream()
+            .map(d -> d.getTopping())
+            .collect(Collectors.toList());
+
 
         for (Topping madeTopping : madeToppings) {
             // Was this topping not on the pizza the user requested?
@@ -44,9 +63,33 @@ public class PizzaRater {
                 mistakes += 1;
         }
 
+        // Did the user slice or bake wrong?
+        List<SliceDecorator> orderedSlice = getPizzaDecorators(ordered, SliceDecorator.class);
+        List<SliceDecorator> madeSlice = getPizzaDecorators(made, SliceDecorator.class);
+
+        if (!orderedSlice.equals(madeSlice)) {
+            mistakes += 1;
+        }
+
+        List<BakeDecorator> orderedBake = getPizzaDecorators(ordered, BakeDecorator.class);
+        List<BakeDecorator> madeBake = getPizzaDecorators(made, BakeDecorator.class);
+
+        if (!orderedBake.equals(madeBake)) {
+            mistakes += 1;
+        }
+
+        int orderComplexity = getPizzaDecorators(ordered, PizzaDecorator.class).size();
+
         // Turn the number of mistakes into a score between 0 - 1
-        // We do this by dividing by the number of toppings in the order (as a rough
+        // We do this by dividing by the number of decorators in the order chain (as a rough
         // measure of how complex the order is), and clamping
-        return Math.max(Math.min((double)mistakes / (double)orderedToppings.size(), 1.), 0.);
+        return Math.max(Math.min((double)mistakes / (double)orderComplexity, 1.), 0.);
+    }
+
+    public static void main(String[] args) {
+        Pizza a = new HamDecorator(new JalapenoDecorator(new BasePizza()));
+        Pizza b = new HamDecorator(new BasePizza());
+
+        System.out.println(PizzaRater.pizzaScore(a, b));
     }
 }

@@ -1,6 +1,6 @@
 package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
-public class SliceDecorator extends OperationDecorator{
+public class SliceDecorator extends PizzaDecorator {
     private final int slices;
 
     public SliceDecorator(Pizza pizza, int slices) {
@@ -19,5 +19,12 @@ public class SliceDecorator extends OperationDecorator{
         return slices;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof SliceDecorator))
+            return false;
 
+        SliceDecorator other = (SliceDecorator) obj;
+        return getSlices() == other.getSlices();
+    }
 }

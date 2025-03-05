@@ -1,6 +1,6 @@
 package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
-public abstract class ToppingDecorator implements Pizza {
+public abstract class ToppingDecorator extends PizzaDecorator {
     //Super class for concrete topping decorators
     protected Pizza pizza;
 
