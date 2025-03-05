@@ -49,8 +49,4 @@ public class PizzaRater {
         // measure of how complex the order is), and clamping
         return Math.max(Math.min((double)mistakes / (double)orderedToppings.size(), 1.), 0.);
     }
-
-    public static void main(String[] args) {
-        pizzaScore(new PineappleDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza()))), new JalapenoDecorator(new HamDecorator(new BasePizza())));
-    }
 }
