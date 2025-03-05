@@ -31,4 +31,14 @@ public abstract class ToppingDecorator implements Pizza {
     }
 
     public abstract Topping getTopping();
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof ToppingDecorator))
+            return false;
+
+        ToppingDecorator other = (ToppingDecorator)obj;
+
+        return getTopping().equals(other.getTopping());
+    }
 }

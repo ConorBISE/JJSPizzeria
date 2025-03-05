@@ -31,4 +31,13 @@ public class Topping {
     public String getPath() {
         return this.path;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Topping))
+            return false;
+
+        Topping other = (Topping) obj;
+        return getName().equals(other.getName());
+    }
 }
