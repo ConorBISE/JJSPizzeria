@@ -8,8 +8,10 @@ import org.jjspizzeria.jjspizzeria.framework.Component;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaState;
 import org.jjspizzeria.jjspizzeria.pizza.observer.PizzaObserver;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.Pizza;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.ToppingDecorator;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PizzaView extends Component implements PizzaObserver {
 
@@ -34,23 +36,32 @@ public class PizzaView extends Component implements PizzaObserver {
     }
 
     /**
-     * This method is called whenever the PizzaManager notifies its observers.
-     * It updates the visual representation by stacking the appropriate base
-     * and topping images.
+     * Called whenever the PizzaManager notifies its observers.
+     * We rebuild the visual representation by stacking the images.
      *
-     * @param pizza The top of the decorator chain for the current pizza.
+     * @param pizza The top of the decorator chain.
      * @param state The current state of the pizza.
      */
     @Override
     public void onPizzaChanged(Pizza pizza, PizzaState state) {
         rootPane.getChildren().clear();
 
-        // Determine which base image to use based on state and toppings.
+        // Traverse the decorator chain and collect all decorators.
+        List<PizzaDecorator> decorators = new ArrayList<>();
+        Pizza current = pizza;
+        while (current instanceof PizzaDecorator) {
+            PizzaDecorator decorator = (PizzaDecorator) current;
+            decorators.add(decorator);
+            current = decorator.getPizza();
+        }
+        // 'current' now is the base pizza.
+
+        // Determine base image based on the pizza state and toppings.
         String baseImageName;
         if (state == PizzaState.UNBAKED) {
             baseImageName = "raw-pizza.png";
         } else {
-            if (hasCheeseTopping(pizza)) {
+            if (hasCheeseTopping(decorators)) {
                 baseImageName = "baked-cheese-pizza.png";
             } else {
                 baseImageName = "baked-pizza.png";
@@ -62,40 +73,64 @@ public class PizzaView extends Component implements PizzaObserver {
         baseImageView.setFitWidth(240);
         rootPane.getChildren().add(baseImageView);
 
-        // Iterate over the topping decorators and stack their images.
-        Pizza current = pizza;
-        while (current instanceof ToppingDecorator toppingDecorator) {
-            // EDGE CASE: If the topping is cheese and the pizza is baked, skip overlaying the raw cheese image.
-            if (state != PizzaState.UNBAKED &&
-                    "cheese".equalsIgnoreCase(toppingDecorator.getTopping().getName())) {
-                current = toppingDecorator.getPizza();
-                continue;
+        // Iterate over the decorators in order from innermost to outermost.
+        // This preserves the stacking order (base at bottom, outer layers on top).
+        for (int i = decorators.size() - 1; i >= 0; i--) {
+            PizzaDecorator decorator = decorators.get(i);
+
+            // Process topping decorators.
+            if (decorator instanceof ToppingDecorator toppingDecorator) {
+                // If pizza is baked, skip drawing raw cheese overlay.
+                if (state != PizzaState.UNBAKED &&
+                        "cheese".equalsIgnoreCase(toppingDecorator.getTopping().getName())) {
+                    continue;
+                }
+                String toppingImagePath = toppingDecorator.getPath();
+                ImageView toppingImageView = new ImageView(loadImage(toppingImagePath));
+                toppingImageView.setPreserveRatio(true);
+                toppingImageView.setFitWidth(240);
+                rootPane.getChildren().add(toppingImageView);
             }
-
-            String toppingImagePath = toppingDecorator.getPath();
-
-            ImageView toppingImageView = new ImageView(loadImage(toppingImagePath));
-            toppingImageView.setPreserveRatio(true);
-            toppingImageView.setFitWidth(240);
-
-            rootPane.getChildren().add(toppingImageView);
-            current = toppingDecorator.getPizza();
+            // Process slice decorators.
+            else if (decorator instanceof SliceDecorator sliceDecorator) {
+                System.out.println("In slice logic");
+                int slices = sliceDecorator.getSlices();
+                String imagePath = slices + "slice.png"; // e.g. "4slice.png"
+                ImageView sliceImageView = new ImageView(loadImage(imagePath));
+                sliceImageView.setPreserveRatio(true);
+                sliceImageView.setFitWidth(240);
+                rootPane.getChildren().add(sliceImageView);
+            }
+            // Process box decorators.
+            else if (decorator instanceof BoxDecorator) {
+                String imagePath = "pizza-box.png";
+                ImageView boxImageView = new ImageView(loadImage(imagePath));
+                boxImageView.setPreserveRatio(true);
+                boxImageView.setFitWidth(240);
+                rootPane.getChildren().add(boxImageView);
+            }
         }
-
     }
+
 
     private Image loadImage(String imageName) {
         String path = "/org/jjspizzeria/jjspizzeria/images/" + imageName;
         return new Image(getClass().getResourceAsStream(path));
     }
 
-    private boolean hasCheeseTopping(Pizza pizza) {
-        Pizza current = pizza;
-        while (current instanceof ToppingDecorator toppingDecorator) {
-            if ("cheese".equalsIgnoreCase(toppingDecorator.getTopping().getName())) {
-                return true;
+    /**
+     * Checks if any of the decorators in the chain is a cheese topping.
+     *
+     * @param decorators The list of decorators from the chain.
+     * @return true if a cheese topping is present; false otherwise.
+     */
+    private boolean hasCheeseTopping(List<PizzaDecorator> decorators) {
+        for (PizzaDecorator decorator : decorators) {
+            if (decorator instanceof ToppingDecorator toppingDecorator) {
+                if ("cheese".equalsIgnoreCase(toppingDecorator.getTopping().getName())) {
+                    return true;
+                }
             }
-            current = toppingDecorator.getPizza();
         }
         return false;
     }

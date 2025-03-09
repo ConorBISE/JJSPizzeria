@@ -7,7 +7,7 @@
 
 <?import org.jjspizzeria.jjspizzeria.components.* ?>
 
-<BorderPane minWidth="812" minHeight="610" styleClass="welcome">
+<BorderPane minWidth="760" minHeight="760" styleClass="welcome">
     <center>
         <HBox alignment="CENTER">
             <BorderPane.margin>
