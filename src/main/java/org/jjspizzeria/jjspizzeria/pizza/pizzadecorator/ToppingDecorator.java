@@ -1,9 +1,7 @@
 package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
-public abstract class ToppingDecorator implements Pizza {
+public abstract class ToppingDecorator extends PizzaDecorator {
     //Super class for concrete topping decorators
-    protected Pizza pizza;
-
     public ToppingDecorator(Pizza pizza) {
         this.pizza = pizza;
     }
@@ -12,23 +10,15 @@ public abstract class ToppingDecorator implements Pizza {
 
     }
 
-    public void setPizza(Pizza pizza) {
-        this.pizza = pizza;
-    }
-
-    public Pizza getPizza() {
-        return pizza;
-    }
-
-    @Override
-    public String getDescription() {
-        return pizza.getDescription();
-    }
-
-    @Override
-    public double getCost() {
-        return pizza.getCost();
-    }
-
     public abstract Topping getTopping();
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof ToppingDecorator))
+            return false;
+
+        ToppingDecorator other = (ToppingDecorator)obj;
+
+        return getTopping().equals(other.getTopping());
+    }
 }

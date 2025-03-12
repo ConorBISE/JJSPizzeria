@@ -33,45 +33,39 @@ public class PizzaCommandBar extends FXMLComponent {
 
     @FXML
     private void onAddTopping(ActionEvent e) {
-        Button inner = (Button)e.getSource();
-        IconButton outer = (IconButton)inner.getParent();
-        executeCommand(toppingCommandMapping.get(outer.getIcon()));
+        IconButton button = (IconButton) e.getSource();
+        executeCommand(toppingCommandMapping.get(button.getIconName()));
     }
-    
+
+
     @FXML
     private void bakeNormal() {
-        // TODO
-        System.out.println("Bake normal");
+        executeCommand(new BakeCommand("normal"));
     }
 
     @FXML
     private void bakeCrispy() {
-        // TODO
-        System.out.println("Bake crispy");
+        executeCommand(new BakeCommand("crispy"));
     }
 
     @FXML
     private void slice4() {
-        // TODO
-        System.out.println("Slicing to 4");
+        executeCommand(new SliceCommand(4));
     }
 
     @FXML
     private void slice6() {
-        // TODO
-        System.out.println("Slicing to 6");
+        executeCommand(new SliceCommand(6));
     }
 
     @FXML
     private void slice8() {
-        // TODO
-        System.out.println("Slicing to 8");
+        executeCommand(new SliceCommand(8));
     }
 
     @FXML
     private void box() {
-        // TODO
-        System.out.println("Boxing pizza");
+        executeCommand(new BoxCommand());
     }
 
     @FXML

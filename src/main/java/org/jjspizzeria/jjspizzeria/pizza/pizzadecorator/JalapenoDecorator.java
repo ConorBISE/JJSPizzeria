@@ -11,11 +11,11 @@ public class JalapenoDecorator extends ToppingDecorator {
     //Constructor
     public JalapenoDecorator(Pizza pizza) {
         super(pizza);
-        jalapeno = new Topping("Jalapeno", 1, "jalapeno.png");
+        jalapeno = new Topping("Jalapeno", 1, "jalapeno-topping.png");
     }
 
     public JalapenoDecorator() {
-        jalapeno = new Topping("Jalapeno", 1, "jalapeno.png");
+        jalapeno = new Topping("Jalapeno", 1, "jalapeno-topping.png");
     }
 
 

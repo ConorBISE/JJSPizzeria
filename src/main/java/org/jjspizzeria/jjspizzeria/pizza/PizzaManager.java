@@ -1,18 +1,24 @@
 package org.jjspizzeria.jjspizzeria.pizza;
+import org.jjspizzeria.jjspizzeria.pizza.observer.PizzaObserver;
+import org.jjspizzeria.jjspizzeria.pizza.observer.Subject;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.*;
 
 import org.jjspizzeria.jjspizzeria.GameConsole;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.List;
 
-public class PizzaManager {
+public class PizzaManager implements Subject {
 
     private static PizzaManager instance;
     private Pizza pizza; // Top of the decorator chain
     private PizzaState state;
     private Timer bakingTimer;
     private final GameConsole gameConsole;
+
+    private final List<PizzaObserver> observers = new ArrayList<>();
 
     private PizzaManager() {
         this.pizza = new BasePizza();
@@ -28,6 +34,13 @@ public class PizzaManager {
             instance = new PizzaManager();
         }
         return instance;
+    }
+
+    /**
+     * Resets the singleton instance - used for testing
+     */
+    public static void resetInstance() {
+        instance = null;
     }
 
     public Pizza getPizza() {
@@ -67,7 +80,7 @@ public class PizzaManager {
             toppingDecorator.setPizza(pizza);
             this.pizza = toppingDecorator;
             gameConsole.append("Added " + toppingDecorator.getTopping().getName() + " to the Pizza!");
-
+            notifyObservers();
             // TODO: add the topping image to the pizza
         } else {
             gameConsole.append("You can't add toppings anymore!");
@@ -83,6 +96,7 @@ public class PizzaManager {
                 // 'un-decorate' by returning the wrapped pizza
                 gameConsole.append("Removing " + top.getTopping().getName() + " from the Pizza!");
                 this.pizza = top.getPizza();
+                notifyObservers();
 
                 // TODO: remove top png
             } else {
@@ -97,35 +111,36 @@ public class PizzaManager {
      * Start baking the pizza.
      * Baking transitions from UNBAKED -> BAKING, and after a timer it goes to BAKED.
      */
-    public void bakePizza(int bakingTimeSeconds) {
+    public void bakePizza(BakeDecorator bakeDecorator) {
         if (state != PizzaState.UNBAKED) {
             gameConsole.append("The Pizza has already been baked!");
             return;
         }
+        // Wrap the current pizza in the BakeDecorator.
+        bakeDecorator.setPizza(pizza);
+        pizza = bakeDecorator;
 
-        gameConsole.append("Baking pizza for " + bakingTimeSeconds + " seconds...");
+        gameConsole.append("Baking the pizza " + bakeDecorator.getBakeType() + " style!");
+
         state = PizzaState.BAKING;
+        notifyObservers();
 
-        // TODO: refactor this cause idk
-        // Create a Timer to simulate baking
-        bakingTimer = new Timer();
-        bakingTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                // After the specified delay, move to BAKED state
-                state = PizzaState.BAKED;
-                gameConsole.append("Pizza is now BAKED!");
-            }
-        }, bakingTimeSeconds * 1000L);
+        state = PizzaState.BAKED;
+        notifyObservers();
     }
 
     /**
      * Once the pizza is in BAKED state, you can slice it.
      */
-    public void slicePizza() {
+    public void slicePizza(SliceDecorator sliceDecorator) {
         if (state == PizzaState.BAKED) {
+            // Wrap the current pizza in the SliceDecorator.
+            sliceDecorator.setPizza(pizza);
+            pizza = sliceDecorator;
+
             state = PizzaState.SLICED;
-            // TODO: overlay a "slice.png" or do any slicing logic
+            notifyObservers();
+
             gameConsole.append("Pizza has been sliced.");
         } else {
             gameConsole.append("You can't slice the pizza right now!");
@@ -135,14 +150,53 @@ public class PizzaManager {
     /**
      * Once the pizza is in BAKED or SLICED state, you can box it.
      */
-    public void boxPizza() {
+    public void boxPizza(BoxDecorator boxDecorator) {
         if (state == PizzaState.SLICED) {
+            // Wrap the current pizza in the BoxDecorator.
+            boxDecorator.setPizza(pizza);
+            pizza = boxDecorator;
+
             state = PizzaState.BOXED;
-            // TODO: overlay a "box.png" or do final packaging logic
+            notifyObservers();
+
             gameConsole.append("Pizza has been boxed! Please hand the pizza over to the customer");
         } else {
             gameConsole.append("You can't box the pizza until it's been sliced!");
         }
     }
 
+    public PizzaState getPizzaState(){
+        return this.state;
+    }
+
+    public void reset() {
+        this.pizza = new BasePizza();
+        this.state = PizzaState.UNBAKED;
+        if (this.bakingTimer != null) {
+            this.bakingTimer.cancel();
+            this.bakingTimer = null;
+        }
+    }
+
+
+
+    @Override
+    public void addObserver(PizzaObserver observer) {
+        observers.add(observer);
+        // Put this here so some buttons are disabled from the start
+        // TODO: check if there is a better place for this?
+        notifyObservers();
+    }
+
+    @Override
+    public void removeObserver(PizzaObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (PizzaObserver observer : observers) {
+            observer.onPizzaChanged(pizza, state);
+        }
+    }
 }
