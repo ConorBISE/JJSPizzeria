@@ -13,21 +13,19 @@
     <!-- Toppings grid -->
     <GridPane hgap="7" vgap="7">
         <padding>
-            <Insets>
-                <topRightBottomLeft>15</topRightBottomLeft>
-            </Insets>
+            <Insets top="15" right="15" bottom="15" left="15" />
         </padding>
 
         <children>
-            <IconButton icon="cheese" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <IconButton icon="jalapenos" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-            <IconButton icon="ham" onAction="#onAddTopping" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-            <IconButton icon="mushrooms" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-            <IconButton icon="pineapple" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-            <IconButton icon="pepperoni" onAction="#onAddTopping" GridPane.rowIndex="2" GridPane.columnIndex="1" />
-            <IconButton icon="tomato" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="2" />
-            <IconButton icon="onions" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="2" />
-            <Button text="Undo" onAction="#undoLastCommand" styleClass="topping-button" GridPane.rowIndex="2" GridPane.columnIndex="2" />
+            <IconButton iconName="cheese" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <IconButton iconName="jalapenos" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <IconButton iconName="ham" onAction="#onAddTopping" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <IconButton iconName="mushrooms" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            <IconButton iconName="pineapple" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+            <IconButton iconName="pepperoni" onAction="#onAddTopping" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            <IconButton iconName="tomato" onAction="#onAddTopping" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+            <IconButton iconName="onions" onAction="#onAddTopping" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+            <UndoButton onAction="#undoLastCommand" GridPane.rowIndex="2" GridPane.columnIndex="2" />
         </children>
     </GridPane>
 
@@ -37,8 +35,8 @@
         <VBox styleClass="operation-box">
             <Label text="Bake" styleClass="heading-label" />
             <HBox spacing="8" alignment="center">
-                <Button text="Normal" onAction="#bakeNormal" styleClass="bake-button" />
-                <Button text="Crispy" onAction="#bakeCrispy" styleClass="bake-button" />
+                <BakeButton text="Normal" onAction="#bakeNormal" />
+                <BakeButton text="Crispy" onAction="#bakeCrispy" />
             </HBox>
         </VBox>
 
@@ -46,18 +44,18 @@
         <VBox styleClass="operation-box">
             <Label text="Slice" styleClass="heading-label" />
             <HBox spacing="10" alignment="center">
-                <Button text="4" onAction="#slice4" styleClass="slice-button" />
-                <Button text="6" onAction="#slice6" styleClass="slice-button" />
-                <Button text="8" onAction="#slice8" styleClass="slice-button" />
+                <SliceButton text="4" onAction="#slice4" />
+                <SliceButton text="6" onAction="#slice6" />
+                <SliceButton text="8" onAction="#slice8" />
             </HBox>
         </VBox>
 
         <!-- Action buttons -->
         <HBox spacing="10" alignment="center">
-            <Button text="Box" onAction="#box" styleClass="end-button" />
-            <Button text="Finish" onAction="#finish" styleClass="end-button" />
+            <BoxButton text="Box" onAction="#box" />
+            <FinishButton text="Finish" onAction="#finish" />
         </HBox>
     </VBox>
 
-    <PizzaView style="-fx-background-color: yellow"/>
+    <PizzaView />
 </HBox>

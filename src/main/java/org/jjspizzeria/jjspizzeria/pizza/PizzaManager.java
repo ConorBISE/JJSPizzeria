@@ -111,18 +111,20 @@ public class PizzaManager implements Subject {
      * Start baking the pizza.
      * Baking transitions from UNBAKED -> BAKING, and after a timer it goes to BAKED.
      */
-    public void bakePizza(String bakeStyle) {
+    public void bakePizza(BakeDecorator bakeDecorator) {
         if (state != PizzaState.UNBAKED) {
             gameConsole.append("The Pizza has already been baked!");
             return;
         }
+        // Wrap the current pizza in the BakeDecorator.
+        bakeDecorator.setPizza(pizza);
+        pizza = bakeDecorator;
 
-        gameConsole.append("Baking the pizza " + bakeStyle + " style!");
+        gameConsole.append("Baking the pizza " + bakeDecorator.getBakeType() + " style!");
 
-        // TODO: somehow simulate time and play some ticking sound effect for 3 seconds while the pizza is baking
-        // For now we will skip this and just immediately change states
         state = PizzaState.BAKING;
         notifyObservers();
+
         state = PizzaState.BAKED;
         notifyObservers();
     }
@@ -130,11 +132,15 @@ public class PizzaManager implements Subject {
     /**
      * Once the pizza is in BAKED state, you can slice it.
      */
-    public void slicePizza(int slices) {
+    public void slicePizza(SliceDecorator sliceDecorator) {
         if (state == PizzaState.BAKED) {
+            // Wrap the current pizza in the SliceDecorator.
+            sliceDecorator.setPizza(pizza);
+            pizza = sliceDecorator;
+
             state = PizzaState.SLICED;
             notifyObservers();
-            // TODO: overlay a "slice.png" or do any slicing logic
+
             gameConsole.append("Pizza has been sliced.");
         } else {
             gameConsole.append("You can't slice the pizza right now!");
@@ -144,11 +150,15 @@ public class PizzaManager implements Subject {
     /**
      * Once the pizza is in BAKED or SLICED state, you can box it.
      */
-    public void boxPizza() {
+    public void boxPizza(BoxDecorator boxDecorator) {
         if (state == PizzaState.SLICED) {
+            // Wrap the current pizza in the BoxDecorator.
+            boxDecorator.setPizza(pizza);
+            pizza = boxDecorator;
+
             state = PizzaState.BOXED;
             notifyObservers();
-            // TODO: overlay a "box.png" or do final packaging logic
+
             gameConsole.append("Pizza has been boxed! Please hand the pizza over to the customer");
         } else {
             gameConsole.append("You can't box the pizza until it's been sliced!");
@@ -173,6 +183,9 @@ public class PizzaManager implements Subject {
     @Override
     public void addObserver(PizzaObserver observer) {
         observers.add(observer);
+        // Put this here so some buttons are disabled from the start
+        // TODO: check if there is a better place for this?
+        notifyObservers();
     }
 
     @Override

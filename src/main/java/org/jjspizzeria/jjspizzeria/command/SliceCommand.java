@@ -2,6 +2,7 @@ package org.jjspizzeria.jjspizzeria.command;
 
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.Pizza;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.SliceDecorator;
 
 public class SliceCommand extends Command {
     private final PizzaManager pizzaManager;
@@ -14,7 +15,8 @@ public class SliceCommand extends Command {
 
     @Override
     public void execute() {
-        pizzaManager.slicePizza(slices);
+        SliceDecorator sliceDecorator = new SliceDecorator(slices);
+        pizzaManager.slicePizza(sliceDecorator);
     }
 
     @Override

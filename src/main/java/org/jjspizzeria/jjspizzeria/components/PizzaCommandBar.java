@@ -33,11 +33,11 @@ public class PizzaCommandBar extends FXMLComponent {
 
     @FXML
     private void onAddTopping(ActionEvent e) {
-        Button inner = (Button)e.getSource();
-        IconButton outer = (IconButton)inner.getParent();
-        executeCommand(toppingCommandMapping.get(outer.getIcon()));
+        IconButton button = (IconButton) e.getSource();
+        executeCommand(toppingCommandMapping.get(button.getIconName()));
     }
-    
+
+
     @FXML
     private void bakeNormal() {
         executeCommand(new BakeCommand("normal"));

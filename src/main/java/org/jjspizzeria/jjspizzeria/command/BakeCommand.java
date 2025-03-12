@@ -1,10 +1,11 @@
 package org.jjspizzeria.jjspizzeria.command;
 
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.BakeDecorator;
 
 public class BakeCommand extends Command {
-    private final String bakeStyle;
     private final PizzaManager pizzaManager;
+    private final String bakeStyle;
 
     public BakeCommand(String bakeStyle) {
         this.pizzaManager = PizzaManager.getInstance();
@@ -14,7 +15,8 @@ public class BakeCommand extends Command {
 
     @Override
     public void execute() {
-        pizzaManager.bakePizza(bakeStyle);
+        BakeDecorator bakeDecorator = new BakeDecorator(bakeStyle);
+        pizzaManager.bakePizza(bakeDecorator);
     }
 
     @Override
