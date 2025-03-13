@@ -18,11 +18,9 @@ public class WelcomeScreen extends Screen {
         // in our view file. In order to handle window-wide keypresses, though
         // - we need to add an event handler on our root scene
         getScene().setOnKeyPressed(e -> {
-            try {
+
                 navigate(new GameScreen());
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+
         });
     }
 

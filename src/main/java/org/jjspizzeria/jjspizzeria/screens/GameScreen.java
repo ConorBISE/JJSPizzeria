@@ -15,7 +15,7 @@ public class GameScreen extends Screen {
     private int currentDay = 1;
     private DayCreator dayCreator;
 
-    public GameScreen() throws IOException {
+    public GameScreen() {
         super("/org/jjspizzeria/jjspizzeria/layouts/game.fxml");
         GameConsole.getInstance().append("Welcome to JJ's pizzeria!");
         this.dayCreator = new DayCreator(currentDay);
