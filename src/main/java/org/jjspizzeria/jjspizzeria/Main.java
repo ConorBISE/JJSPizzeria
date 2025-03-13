@@ -14,7 +14,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(new WelcomeScreen());
 
-        scene.getStylesheets()
+           scene.getStylesheets()
             .add(
                 getClass()
                 .getResource("/org/jjspizzeria/jjspizzeria/styles.css")
