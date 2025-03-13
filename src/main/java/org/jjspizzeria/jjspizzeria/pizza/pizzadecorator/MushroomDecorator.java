@@ -10,11 +10,11 @@ public class MushroomDecorator extends ToppingDecorator {
     //Constructor
     public MushroomDecorator(Pizza pizza) {
         super(pizza);
-        mushroom = new Topping("Mushroom", 1, "mushroom.png");
+        mushroom = new Topping("Mushroom", 1, "mushroom-topping.png");
     }
 
     public MushroomDecorator() {
-        mushroom = new Topping("Mushroom", 1, "mushroom.png");
+        mushroom = new Topping("Mushroom", 1, "mushroom-topping.png");
     }
 
     //Getters

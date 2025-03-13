@@ -1,50 +1,53 @@
 package org.jjspizzeria.jjspizzeria.components;
 
-import org.jjspizzeria.jjspizzeria.framework.Component;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.jjspizzeria.jjspizzeria.framework.Component;
+import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
+import org.jjspizzeria.jjspizzeria.pizza.PizzaState;
+import org.jjspizzeria.jjspizzeria.pizza.observer.PizzaObserver;
+import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.Pizza;
 
-public class IconButton extends Component {
-    private String icon;
+public class IconButton extends ObserverButton {
+    private String iconName;
     private EventHandler<ActionEvent> onAction;
+    private Button button;
 
-    public String getIcon() {
-        return icon;
+    public IconButton() {
+        super();
+        getStyleClass().add("topping-button");
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public String getIconName() {
+        return iconName;
     }
 
-
-    public EventHandler<ActionEvent> getOnAction() {
-        return onAction;
+    public void setIconName(String iconName) {
+        this.iconName = iconName;
+        updateIcon();
     }
 
-    public void setOnAction(EventHandler<ActionEvent> onAction) {
-        this.onAction = onAction;
+    private void updateIcon() {
+        if (iconName != null && !iconName.isEmpty()) {
+            String resourcePath = "/org/jjspizzeria/jjspizzeria/images/" + iconName + ".png";
+            Image image = new Image(getClass().getResourceAsStream(resourcePath));
+            ImageView iconView = new ImageView(image);
+            iconView.setPreserveRatio(true);
+            iconView.setFitWidth(65);
+
+
+            setGraphic(iconView);
+        } else {
+            setGraphic(null);
+        }
     }
 
     @Override
-    protected Node getRoot() {
-        String resourcePath = "/org/jjspizzeria/jjspizzeria/images/" + icon + ".png";
-
-        Image image = new Image(getClass().getResourceAsStream(resourcePath));
-        ImageView icon = new ImageView(image);
-
-        icon.setPreserveRatio(true);
-        icon.setFitWidth(65);
-
-        Button button = new Button("", icon);
-        button.getStyleClass().add("topping-button");
-        button.setOnAction(onAction);
-
-        return button;
+    protected boolean shouldEnableForState(PizzaState state) {
+        return state == PizzaState.UNBAKED;
     }
-    
 }

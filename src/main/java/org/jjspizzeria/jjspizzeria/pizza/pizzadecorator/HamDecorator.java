@@ -11,11 +11,11 @@ public class HamDecorator extends ToppingDecorator {
     //Constructor
     public HamDecorator(Pizza pizza) {
         super(pizza);
-        ham = new Topping("Ham", 2, "ham.png");
+        ham = new Topping("Ham", 2, "ham-topping.png");
     }
 
     public HamDecorator() {
-        ham = new Topping("Ham", 2, "ham.png");
+        ham = new Topping("Ham", 2, "ham-topping.png");
     }
 
 

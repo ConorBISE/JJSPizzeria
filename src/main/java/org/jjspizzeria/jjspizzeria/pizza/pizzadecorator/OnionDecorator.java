@@ -10,11 +10,11 @@ public class OnionDecorator extends ToppingDecorator {
     //Constructor
     public OnionDecorator(Pizza pizza) {
         super(pizza);
-        onion = new Topping("Onion", 1, "onion.png");
+        onion = new Topping("Onion", 1, "onion-topping.png");
     }
 
     public OnionDecorator() {
-        onion = new Topping("Onion", 1, "onion.png");
+        onion = new Topping("Onion", 1, "onion-topping.png");
     }
 
     //Getters

@@ -70,39 +70,40 @@ public class PizzaManagerTest {
 
     @Test
     public void testBakePizza() {
-        pizzaManager.bakePizza(1);
-        assertEquals(PizzaState.BAKING, pizzaManager.getPizzaState());
-    }
-
-    @Test
-    public void testSlicePizzaBeforeBaking() {
-        pizzaManager.slicePizza();
-        verify(mockConsole).append("You can't slice the pizza right now!");
+        BakeDecorator bakeDecorator = new BakeDecorator("crispy");
+        pizzaManager.bakePizza(bakeDecorator);
+        assertEquals(PizzaState.BAKED, pizzaManager.getPizzaState());
     }
 
     @Test
     public void testSlicePizzaAfterBaking() throws InterruptedException {
-        pizzaManager.bakePizza(1);
+        BakeDecorator bakeDecorator = new BakeDecorator("crispy");
+        pizzaManager.bakePizza(bakeDecorator);
         Thread.sleep(1500);
-        pizzaManager.slicePizza();
+        SliceDecorator sliceDecorator = new SliceDecorator(6);
+        pizzaManager.slicePizza(sliceDecorator);
         assertEquals(PizzaState.SLICED, pizzaManager.getPizzaState());
     }
 
     @Test
     public void testBoxPizzaBeforeSlicing() {
-        pizzaManager.bakePizza(1);
-        pizzaManager.boxPizza();
+        BakeDecorator bakeDecorator = new BakeDecorator("crispy");
+        pizzaManager.bakePizza(bakeDecorator);
+        BoxDecorator boxDecorator = new BoxDecorator();
+        pizzaManager.boxPizza(boxDecorator);
         verify(mockConsole).append("You can't box the pizza until it's been sliced!");
     }
 
     @Test
     public void testBoxPizzaAfterSlicing() throws InterruptedException {
-        pizzaManager.bakePizza(1);
+        BakeDecorator bakeDecorator = new BakeDecorator("crispy");
+        pizzaManager.bakePizza(bakeDecorator);
         Thread.sleep(1500);
-        pizzaManager.slicePizza();
-        pizzaManager.boxPizza();
+        SliceDecorator sliceDecorator = new SliceDecorator(6);
+        pizzaManager.slicePizza(sliceDecorator);
+        BoxDecorator boxDecorator = new BoxDecorator();
+        pizzaManager.boxPizza(boxDecorator);
         assertEquals(PizzaState.BOXED, pizzaManager.getPizzaState());
     }
 }
-
 

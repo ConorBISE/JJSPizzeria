@@ -1,10 +1,12 @@
 package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
-public class BoxDecorator extends OperationDecorator{
+public class BoxDecorator extends PizzaDecorator {
     public BoxDecorator(Pizza pizza) {
         super(pizza);
     }
+
     public BoxDecorator() {
+        this(null);
     }
 
     public String getDescription() {
