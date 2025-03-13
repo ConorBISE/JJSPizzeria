@@ -38,6 +38,7 @@ public class DayCreator {
         if(this.day == 1){
             //so that every player will see this customer on day 1
             customersForTheDay.add(allCustomers.get(0));
+            System.out.println("Day 1: Customer added: " + allCustomers.get(0).getName()); // Debug message
 
         }else {
             //getting 3 unique customers randomly
@@ -53,27 +54,23 @@ public class DayCreator {
     }
 
 
-    public void greetCustomers() {
-        System.out.println("\nCustomer Arriving:");
-        for (Customer customer : customersForTheDay) {
-            System.out.println(customer.getPersonality().greetingDialogue(customer));
-        }
+    public String greetCustomers(Customer customer) {
+        StringBuilder greetingMessage = new StringBuilder();
+        greetingMessage.append(customer.getPersonality().greetingDialogue(customer));
+        return greetingMessage.toString();
     }
 
-    public void receiveRatings() {
-        System.out.println("\nCustomer Ratings:");
-        for (Customer customer : customersForTheDay) {
-            System.out.println(customer.getPersonality().ratingDialogue(customer));
-        }
+    public String receiveRatings(Customer customer) {
+        StringBuilder ratingMessage = new StringBuilder();
+        ratingMessage.append(customer.getPersonality().ratingDialogue(customer));
+        return ratingMessage.toString();
     }
 
-    public void customersLeave() {
-        System.out.println("\nCustomers Leaving:");
-        for (Customer customer : customersForTheDay) {
-            System.out.println(customer.getPersonality().leavingDialogue(customer));
-        }
+    public String customersLeave(Customer customer) {
+        StringBuilder leavingMessage = new StringBuilder();
+        leavingMessage.append(customer.getPersonality().leavingDialogue(customer));
+        return leavingMessage.toString();
     }
-
     // Calls the next customer
     public Customer getNextCustomer() {
         if (!customersForTheDay.isEmpty()) {
