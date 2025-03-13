@@ -13,9 +13,11 @@ public class WelcomeScreen extends Screen {
     }
 
     @FXML
+
     private void setStandardTheme() {
         ThemeManager.getInstance().setThemeByButton("Original");
         navigate(new GameScreen());
+
 
     }
 
