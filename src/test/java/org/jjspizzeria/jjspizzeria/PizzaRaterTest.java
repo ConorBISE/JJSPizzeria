@@ -8,7 +8,7 @@ import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.*;
 
 public class PizzaRaterTest {
     @Test
-    public void testIdenticalToppingPizza() {
+    void testIdenticalToppingPizza() {
         Pizza a = new HamDecorator(new JalapenoDecorator(new BasePizza()));
         Pizza b = new JalapenoDecorator(new HamDecorator(new BasePizza()));
 
@@ -16,7 +16,7 @@ public class PizzaRaterTest {
     }
 
     @Test
-    public void testMissedTopping() {
+    void testMissedTopping() {
         Pizza a = new PineappleDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())));
         Pizza b = new JalapenoDecorator(new HamDecorator(new BasePizza()));
 
@@ -24,7 +24,7 @@ public class PizzaRaterTest {
     }
 
     @Test
-    public void testExtraTopping() {
+    void testExtraTopping() {
         Pizza a = new HamDecorator(new JalapenoDecorator(new BasePizza()));
         Pizza b = new PineappleDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())));
 
@@ -32,7 +32,7 @@ public class PizzaRaterTest {
     }
 
     @Test
-    public void testCorrectBakeDecorator() {
+    void testCorrectBakeDecorator() {
         Pizza a = new BakeDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())), "normal");
         Pizza b = new BakeDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())), "normal");
 
@@ -40,7 +40,7 @@ public class PizzaRaterTest {
     }
 
     @Test
-    public void testIncorrectBakeDecorator() {
+    void testIncorrectBakeDecorator() {
         Pizza a = new BakeDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())), "normal");
         Pizza b = new BakeDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())), "crispy");
 
@@ -48,7 +48,7 @@ public class PizzaRaterTest {
     }
 
     @Test
-    public void testCorrectSliceDecorator() {
+    void testCorrectSliceDecorator() {
         Pizza a = new SliceDecorator(new BakeDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())), "normal"), 4);
         Pizza b = new SliceDecorator(new BakeDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())), "normal"), 4);
 
@@ -56,7 +56,7 @@ public class PizzaRaterTest {
     }
 
     @Test
-    public void testIncorrectSliceDecorator() {
+    void testIncorrectSliceDecorator() {
         Pizza a = new SliceDecorator(new BakeDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())), "normal"), 4);
         Pizza b = new SliceDecorator(new BakeDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())), "normal"), 6);
 

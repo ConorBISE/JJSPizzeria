@@ -7,19 +7,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DecoratorTest {
 
     @Test
-    public void testBasePizzaCost() {
+    void testBasePizzaCost() {
         Pizza pizza = new BasePizza();
         assertEquals(9.0, pizza.getCost());
     }
 
     @Test
-    public void testBasePizzaDescription() {
+    void testBasePizzaDescription() {
         Pizza pizza = new BasePizza();
         assertEquals("Pizza", pizza.getDescription());
     }
 
     @Test
-    public void testPizzaWithCheese() {
+    void testPizzaWithCheese() {
         Pizza pizza = new CheeseDecorator(new BasePizza());
         
         assertEquals(10.50, pizza.getCost());
@@ -27,7 +27,7 @@ public class DecoratorTest {
     }
 
     @Test
-    public void testPizzaWithMultipleToppings() {
+    void testPizzaWithMultipleToppings() {
         Pizza pizza = new BasePizza();
         pizza = new CheeseDecorator(pizza);
         pizza = new PepperoniDecorator(pizza);
@@ -39,7 +39,7 @@ public class DecoratorTest {
 
 
     @Test
-    public void testToppingEntityGetters() {
+    void testToppingEntityGetters() {
         Topping topping = new Topping("Ham", 2.00, "ham.png");
         
         assertEquals("Ham", topping.getName());

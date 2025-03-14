@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DayCreatorTest {
 
     @Test
-    public void testSelectCustomer() {
+    void testSelectCustomer() {
 
         DayCreator dayCreator = new DayCreator(1);
 
@@ -27,7 +27,7 @@ public class DayCreatorTest {
     }
 
     @Test
-    public void testRegularPricing() {
+    void testRegularPricing() {
         DayCreator dayCreator = new DayCreator(1);
         double basePrice = 25.80;
         double finalPrice = dayCreator.calculatePrice(basePrice);
@@ -35,7 +35,7 @@ public class DayCreatorTest {
     }
 
     @Test
-    public void testMidweekPricing() {
+    void testMidweekPricing() {
         DayCreator dayCreator = new DayCreator(2);
         double basePrice = 13.50;
         double finalPrice = dayCreator.calculatePrice(basePrice);
@@ -44,7 +44,7 @@ public class DayCreatorTest {
     }
 
     @Test
-    public void testPricingChange() {
+    void testPricingChange() {
         ///////////DAY 1/////////////////////
         DayCreator dayCreator = new DayCreator(1);
         double basePrice = 11.16;
