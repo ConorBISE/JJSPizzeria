@@ -1,21 +1,11 @@
 package org.jjspizzeria.jjspizzeria.components;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.jjspizzeria.jjspizzeria.framework.Component;
-import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaState;
-import org.jjspizzeria.jjspizzeria.pizza.observer.PizzaObserver;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.Pizza;
 
 public class IconButton extends ObserverButton {
     private String iconName;
-    private EventHandler<ActionEvent> onAction;
-    private Button button;
 
     public IconButton() {
         super();

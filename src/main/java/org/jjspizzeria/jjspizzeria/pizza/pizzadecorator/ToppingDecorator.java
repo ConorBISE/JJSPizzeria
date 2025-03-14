@@ -2,11 +2,11 @@ package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
 public abstract class ToppingDecorator extends PizzaDecorator {
     //Super class for concrete topping decorators
-    public ToppingDecorator(Pizza pizza) {
+    protected ToppingDecorator(Pizza pizza) {
         this.pizza = pizza;
     }
 
-    public ToppingDecorator() {
+    protected ToppingDecorator() {
 
     }
 
@@ -20,5 +20,13 @@ public abstract class ToppingDecorator extends PizzaDecorator {
         ToppingDecorator other = (ToppingDecorator)obj;
 
         return getTopping().equals(other.getTopping());
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getTopping() == null) ? 0 : getTopping().hashCode());
+        return result;
     }
 }

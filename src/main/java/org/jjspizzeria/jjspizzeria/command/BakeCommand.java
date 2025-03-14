@@ -18,9 +18,4 @@ public class BakeCommand extends Command {
         BakeDecorator bakeDecorator = new BakeDecorator(bakeStyle);
         pizzaManager.bakePizza(bakeDecorator);
     }
-
-    @Override
-    public void undo() {
-
-    }
 }

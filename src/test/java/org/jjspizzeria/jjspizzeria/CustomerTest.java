@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class CustomerTest {
     @Test
-    public void testGetOrderDetails() {
+    void testGetOrderDetails() {
         Order order = new Order(Arrays.asList("cheese", "tomato", "olives"), 6, "crispy");
         Personality personality = new HappyDialogue();
         Customer customer = new Customer("Jane", order, personality);
@@ -19,7 +19,7 @@ public class CustomerTest {
     }
 
     @Test
-    public void testLoadCustomers() throws IOException{
+    void testLoadCustomers() throws IOException{
         String resourcePath =   "/org/jjspizzeria/jjspizzeria/customers.json";
         List<Customer> customers = Customer.loadCustomers(resourcePath);
 
@@ -43,7 +43,7 @@ public class CustomerTest {
 
 
     @Test
-    public void testHappyDialogue() {
+    void testHappyDialogue() {
         Order order = new Order(Arrays.asList("cheese", "tomato"), 8, "crispy");
         Personality happyPersonality = new HappyDialogue();
         Customer customer = new Customer("John", order, happyPersonality);
