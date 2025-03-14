@@ -11,6 +11,7 @@ public class BakeDecorator extends PizzaDecorator {
         this.bakeType = bakeType;
     }
 
+    @Override
     public String getDescription() {
         return pizza.getDescription() + " " + bakeType + " baked";
     }

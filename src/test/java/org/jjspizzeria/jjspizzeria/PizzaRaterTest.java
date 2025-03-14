@@ -12,7 +12,7 @@ public class PizzaRaterTest {
         Pizza a = new HamDecorator(new JalapenoDecorator(new BasePizza()));
         Pizza b = new JalapenoDecorator(new HamDecorator(new BasePizza()));
 
-        assertEquals(PizzaRater.pizzaScore(a, b), 0.0);
+        assertEquals(0.0, PizzaRater.pizzaScore(a, b));
     }
 
     @Test
@@ -20,7 +20,7 @@ public class PizzaRaterTest {
         Pizza a = new PineappleDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())));
         Pizza b = new JalapenoDecorator(new HamDecorator(new BasePizza()));
 
-        assertEquals(PizzaRater.pizzaScore(a, b), 1. / 3.);
+        assertEquals(1. / 3., PizzaRater.pizzaScore(a, b));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class PizzaRaterTest {
         Pizza a = new HamDecorator(new JalapenoDecorator(new BasePizza()));
         Pizza b = new PineappleDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())));
 
-        assertEquals(PizzaRater.pizzaScore(a, b), 1. / 2.);
+        assertEquals(1. / 2., PizzaRater.pizzaScore(a, b));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class PizzaRaterTest {
         Pizza a = new BakeDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())), "normal");
         Pizza b = new BakeDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())), "normal");
 
-        assertEquals(PizzaRater.pizzaScore(a, b), 0.0);
+        assertEquals(0.0, PizzaRater.pizzaScore(a, b));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class PizzaRaterTest {
         Pizza a = new BakeDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())), "normal");
         Pizza b = new BakeDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())), "crispy");
 
-        assertEquals(PizzaRater.pizzaScore(a, b), 1. / 3.);
+        assertEquals(1. / 3., PizzaRater.pizzaScore(a, b));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class PizzaRaterTest {
         Pizza a = new SliceDecorator(new BakeDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())), "normal"), 4);
         Pizza b = new SliceDecorator(new BakeDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())), "normal"), 4);
 
-        assertEquals(PizzaRater.pizzaScore(a, b), 0.0);
+        assertEquals(0.0, PizzaRater.pizzaScore(a, b));
     }
 
     @Test
@@ -60,6 +60,6 @@ public class PizzaRaterTest {
         Pizza a = new SliceDecorator(new BakeDecorator(new HamDecorator(new JalapenoDecorator(new BasePizza())), "normal"), 4);
         Pizza b = new SliceDecorator(new BakeDecorator(new JalapenoDecorator(new HamDecorator(new BasePizza())), "normal"), 6);
 
-        assertEquals(PizzaRater.pizzaScore(a, b), 1. / 4.);
+        assertEquals(1. / 4., PizzaRater.pizzaScore(a, b));
     }
 }

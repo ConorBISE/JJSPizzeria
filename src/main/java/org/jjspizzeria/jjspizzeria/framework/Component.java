@@ -9,7 +9,7 @@ import javafx.scene.Node;
 public abstract class Component extends Group {
     public boolean injectedRoot = false;
 
-    public Component() {}
+    protected Component() {}
     
     @Override
     public ObservableList<Node> getChildren() {

@@ -93,7 +93,6 @@ public class PizzaView extends Component implements PizzaObserver {
             }
             // Process slice decorators.
             else if (decorator instanceof SliceDecorator sliceDecorator) {
-                System.out.println("In slice logic");
                 int slices = sliceDecorator.getSlices();
                 String imagePath = slices + "slice.png"; // e.g. "4slice.png"
                 ImageView sliceImageView = new ImageView(loadImage(imagePath));
@@ -112,7 +111,6 @@ public class PizzaView extends Component implements PizzaObserver {
         }
     }
 
-
     private Image loadImage(String imageName) {
         String path = "/org/jjspizzeria/jjspizzeria/images/" + imageName;
         return new Image(getClass().getResourceAsStream(path));
@@ -126,10 +124,9 @@ public class PizzaView extends Component implements PizzaObserver {
      */
     private boolean hasCheeseTopping(List<PizzaDecorator> decorators) {
         for (PizzaDecorator decorator : decorators) {
-            if (decorator instanceof ToppingDecorator toppingDecorator) {
-                if ("cheese".equalsIgnoreCase(toppingDecorator.getTopping().getName())) {
-                    return true;
-                }
+            if (decorator instanceof ToppingDecorator toppingDecorator &&
+                    "cheese".equalsIgnoreCase(toppingDecorator.getTopping().getName())) {
+                return true;
             }
         }
         return false;

@@ -43,12 +43,12 @@ public class PizzaRater {
         List<Topping> orderedToppings = getPizzaDecorators(ordered, ToppingDecorator.class)
             .stream()
             .map(d -> d.getTopping())
-            .collect(Collectors.toList());
+            .toList();
 
         List<Topping> madeToppings = getPizzaDecorators(made, ToppingDecorator.class)
             .stream()
             .map(d -> d.getTopping())
-            .collect(Collectors.toList());
+            .toList();
 
 
         for (Topping madeTopping : madeToppings) {
@@ -84,12 +84,5 @@ public class PizzaRater {
         // We do this by dividing by the number of decorators in the order chain (as a rough
         // measure of how complex the order is), and clamping
         return Math.max(Math.min((double)mistakes / (double)orderComplexity, 1.), 0.);
-    }
-
-    public static void main(String[] args) {
-        Pizza a = new HamDecorator(new JalapenoDecorator(new BasePizza()));
-        Pizza b = new HamDecorator(new BasePizza());
-
-        System.out.println(PizzaRater.pizzaScore(a, b));
     }
 }

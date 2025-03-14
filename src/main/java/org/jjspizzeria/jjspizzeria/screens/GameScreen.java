@@ -5,10 +5,6 @@ import org.jjspizzeria.jjspizzeria.customer.Customer;
 import org.jjspizzeria.jjspizzeria.customer.DayCreator;
 import org.jjspizzeria.jjspizzeria.framework.Screen;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.BasePizza;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.Pizza;
-
-import java.io.IOException;
 import java.util.List;
 
 public class GameScreen extends Screen {
@@ -27,8 +23,8 @@ public class GameScreen extends Screen {
             GameConsole.getInstance().append("Day " + currentDay + " begins!");
 
 
-            List<Customer> customers = dayCreator.selectCustomer();
-            System.out.println("Customers selected for the day: " + customers.size());
+            dayCreator.selectCustomer();
+            // System.out.println("Customers selected for the day: " + customers.size());
 
             Customer customer;
 

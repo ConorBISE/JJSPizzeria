@@ -11,6 +11,7 @@ public class SliceDecorator extends PizzaDecorator {
         this.slices = slices;
     }
 
+    @Override
     public String getDescription(){
         return pizza.getDescription() + " cut into " + slices + " slices";
     }

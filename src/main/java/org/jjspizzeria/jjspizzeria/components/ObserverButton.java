@@ -8,7 +8,7 @@ import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.Pizza;
 
 public abstract class ObserverButton extends Button implements PizzaObserver {
 
-    public ObserverButton() {
+    protected ObserverButton() {
         PizzaManager.getInstance().addObserver(this);
     }
 

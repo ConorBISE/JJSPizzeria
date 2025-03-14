@@ -44,8 +44,6 @@ public class DayCreator {
         if (this.day == 1) {
             //so that every player will see this customer on day 1
             customersForTheDay.add(allCustomers.get(0));
-            System.out.println("Day 1: Customer added: " + allCustomers.get(0).getName()); // Debug message
-
         } else {
             //getting 3 unique customers randomly
             List<Customer> availableCustomers = new ArrayList<>(allCustomers);
@@ -88,8 +86,8 @@ public class DayCreator {
 
     public double calculatePrice(double basePrice) {
         int[] midWeekDays = {2, 3, 4};
-        for (int day : midWeekDays) {
-            if (this.day == day) {
+        for (int midWeekDay : midWeekDays) {
+            if (this.day == midWeekDay) {
                 this.calculator.setStrategy(this.discountPricing);
                 return this.calculator.calculatePrice(basePrice);
             }

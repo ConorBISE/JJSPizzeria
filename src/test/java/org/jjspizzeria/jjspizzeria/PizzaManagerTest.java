@@ -2,7 +2,6 @@ package org.jjspizzeria.jjspizzeria;
 
 import org.jjspizzeria.jjspizzeria.pizza.*;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.*;
-import org.jjspizzeria.jjspizzeria.GameConsole;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,10 +13,7 @@ public class PizzaManagerTest {
     private GameConsole mockConsole;
 
     static {
-        try {
-            Platform.startup(() -> {});
-        } catch (IllegalStateException e) {
-        }
+        Platform.startup(() -> {});
     }
 
     @Before
@@ -79,7 +75,6 @@ public class PizzaManagerTest {
     public void testSlicePizzaAfterBaking() throws InterruptedException {
         BakeDecorator bakeDecorator = new BakeDecorator("crispy");
         pizzaManager.bakePizza(bakeDecorator);
-        Thread.sleep(1500);
         SliceDecorator sliceDecorator = new SliceDecorator(6);
         pizzaManager.slicePizza(sliceDecorator);
         assertEquals(PizzaState.SLICED, pizzaManager.getPizzaState());
@@ -98,7 +93,6 @@ public class PizzaManagerTest {
     public void testBoxPizzaAfterSlicing() throws InterruptedException {
         BakeDecorator bakeDecorator = new BakeDecorator("crispy");
         pizzaManager.bakePizza(bakeDecorator);
-        Thread.sleep(1500);
         SliceDecorator sliceDecorator = new SliceDecorator(6);
         pizzaManager.slicePizza(sliceDecorator);
         BoxDecorator boxDecorator = new BoxDecorator();

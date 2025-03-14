@@ -2,11 +2,11 @@ package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 
 public abstract class ToppingDecorator extends PizzaDecorator {
     //Super class for concrete topping decorators
-    public ToppingDecorator(Pizza pizza) {
+    protected ToppingDecorator(Pizza pizza) {
         this.pizza = pizza;
     }
 
-    public ToppingDecorator() {
+    protected ToppingDecorator() {
 
     }
 
