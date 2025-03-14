@@ -18,9 +18,4 @@ public class SliceCommand extends Command {
         SliceDecorator sliceDecorator = new SliceDecorator(slices);
         pizzaManager.slicePizza(sliceDecorator);
     }
-
-    @Override
-    public void undo() {
-
-    }
 }
