@@ -1,7 +1,7 @@
 package org.jjspizzeria.jjspizzeria.customer;
 
-public interface Personality {
-    String greetingDialogue(Customer customer);
-    String ratingDialogue(Customer customer);
-    String leavingDialogue(Customer customer);
+public interface  Personality{
+    String greetingDialogue(String name, String orderDetails);
+    String ratingDialogue();
+    String leavingDialogue();
 }
