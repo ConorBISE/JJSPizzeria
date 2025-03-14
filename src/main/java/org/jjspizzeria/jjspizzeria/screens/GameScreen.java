@@ -16,20 +16,8 @@ public class GameScreen extends Screen implements PizzaObserver {
     private int currentDay = 1;
     private DayCreator dayCreator;
     private Customer currentCustomer;
-    private boolean isPizzaReady = false;
     private List<Customer> dailyCustomers;
     private int currentCustomerIndex = 0;
-
-    // Game states to control flow
-    private enum GameState {
-        DAY_START,
-        CUSTOMER_GREETING,
-        MAKING_PIZZA,
-        RATING_PIZZA,
-        CUSTOMER_LEAVING,
-        DAY_END,
-        GAME_OVER
-    }
 
     private GameState currentState = GameState.DAY_START;
 
@@ -99,7 +87,6 @@ public class GameScreen extends Screen implements PizzaObserver {
             GameConsole.getInstance().append("[Make the pizza according to the customer's order]");
 
             // Now wait for user to make pizza
-            isPizzaReady = false;
             currentState = GameState.MAKING_PIZZA;
 
             // The onPizzaChanged observer will trigger when pizza is boxed
@@ -114,15 +101,15 @@ public class GameScreen extends Screen implements PizzaObserver {
 
     @Override
     public void onPizzaChanged(Pizza pizza, PizzaState state) {
-        if (state == PizzaState.BOXED && !isPizzaReady && currentState == GameState.MAKING_PIZZA) {
-            isPizzaReady = true;
+        System.out.println("onPizzaChanged() called - Current Pizza State: " + state);
+        if (state == PizzaState.BOXED) {
             GameConsole.getInstance().append("Pizza is boxed! Now rating the order...");
 
-            // Move to rating state
             currentState = GameState.RATING_PIZZA;
             progressGame();
         }
     }
+
 
     //Compares the made pizza with the customer's order and displays feedback
     private void processPizzaRating() {
@@ -213,15 +200,7 @@ public class GameScreen extends Screen implements PizzaObserver {
         if (customer.getSlices() > 0) {
             pizza = new SliceDecorator(pizza, customer.getSlices());
         }
-
         return pizza;
     }
 
-    /**
-     * Call this method from UI button handlers to manually progress game
-     * (Could be used for "Next" buttons between phases if needed)
-     */
-    public void advanceGame() {
-        progressGame();
-    }
 }
