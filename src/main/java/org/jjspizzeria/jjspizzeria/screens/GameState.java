@@ -5,7 +5,6 @@ public enum GameState {
     DAY_START,
     CUSTOMER_GREETING,
     MAKING_PIZZA,
-    BOXED,
     RATING_PIZZA,
     CUSTOMER_LEAVING,
     DAY_END,
