@@ -25,9 +25,7 @@ public class Main extends Application {
                 .toExternalForm()
             );
 
-        primaryStage.addEventHandler(Screen.RESIZE_WINDOW, e -> {
-            primaryStage.sizeToScene();
-        });
+        primaryStage.addEventHandler(Screen.RESIZE_WINDOW, e -> primaryStage.sizeToScene());
 
         primaryStage.setScene(scene);
         primaryStage.show();

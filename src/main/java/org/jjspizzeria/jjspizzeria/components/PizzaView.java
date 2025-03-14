@@ -49,8 +49,7 @@ public class PizzaView extends Component implements PizzaObserver {
         // Traverse the decorator chain and collect all decorators.
         List<PizzaDecorator> decorators = new ArrayList<>();
         Pizza current = pizza;
-        while (current instanceof PizzaDecorator) {
-            PizzaDecorator decorator = (PizzaDecorator) current;
+        while (current instanceof PizzaDecorator decorator) {
             decorators.add(decorator);
             current = decorator.getPizza();
         }

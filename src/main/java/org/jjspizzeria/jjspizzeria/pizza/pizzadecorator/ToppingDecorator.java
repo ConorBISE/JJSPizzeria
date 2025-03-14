@@ -21,4 +21,12 @@ public abstract class ToppingDecorator extends PizzaDecorator {
 
         return getTopping().equals(other.getTopping());
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getTopping() == null) ? 0 : getTopping().hashCode());
+        return result;
+    }
 }

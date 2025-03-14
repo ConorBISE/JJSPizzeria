@@ -5,7 +5,6 @@ import org.jjspizzeria.jjspizzeria.customer.Customer;
 import org.jjspizzeria.jjspizzeria.customer.DayCreator;
 import org.jjspizzeria.jjspizzeria.framework.Screen;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
-import java.util.List;
 
 public class GameScreen extends Screen {
     private int currentDay = 1;

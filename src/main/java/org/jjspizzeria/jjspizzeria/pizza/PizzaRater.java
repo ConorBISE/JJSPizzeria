@@ -2,12 +2,8 @@ package org.jjspizzeria.jjspizzeria.pizza;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.BakeDecorator;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.BasePizza;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.HamDecorator;
-import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.JalapenoDecorator;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.Pizza;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.PizzaDecorator;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.SliceDecorator;
@@ -21,9 +17,7 @@ public class PizzaRater {
         Pizza current = pizza;
         List<T> list = new ArrayList<>();
 
-        while (current instanceof PizzaDecorator) {
-            PizzaDecorator currentDecorator = (PizzaDecorator) current;
-    
+        while (current instanceof PizzaDecorator currentDecorator) {    
             if (clazz.isAssignableFrom(currentDecorator.getClass())) {
                 // Type safety: we've just made sure this decorator is an instance of T
                 // (at least at compile time)

@@ -1,14 +1,14 @@
 package org.jjspizzeria.jjspizzeria.customer;
 
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.MidWeekPricing;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PriceCalculator;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PricingStrategy;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.RegularPricing;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.MidWeekPricing;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PriceCalculator;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PricingStrategy;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.RegularPricing;
 
 public class DayCreator {
     private List<Customer> allCustomers;

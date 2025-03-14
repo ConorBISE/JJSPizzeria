@@ -21,11 +21,29 @@ public class SliceDecorator extends PizzaDecorator {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof SliceDecorator))
-            return false;
-
-        SliceDecorator other = (SliceDecorator) obj;
-        return getSlices() == other.getSlices();
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + slices;
+        return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+    
+        if (obj == null)
+            return false;
+    
+        if (getClass() != obj.getClass())
+            return false;
+    
+        SliceDecorator other = (SliceDecorator) obj;
+        if (slices != other.slices)
+            return false;
+    
+        return true;
+    }
+    
 }
