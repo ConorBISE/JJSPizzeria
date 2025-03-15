@@ -69,7 +69,7 @@ public class GameScreen extends Screen implements PizzaObserver {
     }
 
     //Starts a new day and prepares customers
-    private void startDay() {
+    public void startDay() {
         GameConsole.getInstance().append("Day " + currentDay + " begins!");
 
         // Get customers for the day
@@ -84,7 +84,7 @@ public class GameScreen extends Screen implements PizzaObserver {
 
     //Greets the next customer in line
 
-    private void greetNextCustomer() {
+    public void greetNextCustomer() {
         if (currentCustomerIndex < dailyCustomers.size()) {
             currentCustomer = dailyCustomers.get(currentCustomerIndex);
             GameConsole.getInstance().append(dayCreator.greetCustomers(currentCustomer));
@@ -119,7 +119,7 @@ public class GameScreen extends Screen implements PizzaObserver {
 
 
     //Compares the made pizza with the customer's order and displays feedback
-    private void processPizzaRating() {
+    public void processPizzaRating() {
         Pizza orderedPizza = createPizzaFromCustomer(currentCustomer);
         Pizza madePizza = PizzaManager.getInstance().getPizza();
 
@@ -138,7 +138,7 @@ public class GameScreen extends Screen implements PizzaObserver {
 
 
     // Handles customer departure and advances to next customer
-    private void handleCustomerLeaving() {
+    public void handleCustomerLeaving() {
         GameConsole.getInstance().append(dayCreator.customersLeave(currentCustomer));
 
         // Move to next customer
@@ -148,7 +148,7 @@ public class GameScreen extends Screen implements PizzaObserver {
     }
 
     //Ends the current day and advances to next day
-    private void endDay() {
+    public void endDay() {
         GameConsole.getInstance().append("Day " + currentDay + " is over!");
         currentDay++;
 
@@ -164,13 +164,13 @@ public class GameScreen extends Screen implements PizzaObserver {
     }
 
     //Ends the game
-    private void endGame() {
+    public void endGame() {
         GameConsole.getInstance().append("Game Over! Thanks for playing.");
     }
 
     //Converts a Customer's toppings, slices, and baking preference( which is specified
     // in the customers json file and extracted in customers) into a Pizza object.
-    private Pizza createPizzaFromCustomer(Customer customer) {
+    public Pizza createPizzaFromCustomer(Customer customer) {
         Pizza pizza = new BasePizza(); // Start with base pizza
 
         // Add multiple toppings dynamically dependent on the order
@@ -218,11 +218,12 @@ public class GameScreen extends Screen implements PizzaObserver {
     }
 
 
-    private void setPricingStrategy(){
+    public void setPricingStrategy(){
         if(currentDay < 3){
             //day 1 and 2 will have regular pricing
             pricingStrategy = new RegularPricing();
         } else{ //day 3 will have ,midweek pricing (20% discount)
+
         pricingStrategy = new MidWeekPricing();
     }
      priceCalculator = new PriceCalculator(pricingStrategy);
