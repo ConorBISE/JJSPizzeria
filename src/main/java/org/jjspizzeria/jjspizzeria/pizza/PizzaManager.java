@@ -165,6 +165,13 @@ public class PizzaManager implements Subject {
         }
     }
 
+    public void finishPizza() {
+        if (state == PizzaState.BOXED) {
+            state = PizzaState.FINISHED;
+            notifyObservers();
+        }
+    }
+
     public PizzaState getPizzaState(){
         return this.state;
     }

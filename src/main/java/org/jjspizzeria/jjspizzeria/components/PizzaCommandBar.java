@@ -70,7 +70,7 @@ public class PizzaCommandBar extends FXMLComponent {
 
     @FXML
     private void finish() {
-        System.out.println("Finishing pizza");
+        executeCommand(new FinishCommand());
     }
 
     public void executeCommand(Command command) {

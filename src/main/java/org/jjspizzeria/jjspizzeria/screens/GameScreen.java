@@ -102,9 +102,9 @@ public class GameScreen extends Screen implements PizzaObserver {
     @Override
     public void onPizzaChanged(Pizza pizza, PizzaState state) {
         System.out.println("onPizzaChanged() called - Current Pizza State: " + state);
-        if (state == PizzaState.BOXED) {
-            GameConsole.getInstance().append("Pizza is boxed! Now rating the order...");
-
+        
+        if (state == PizzaState.FINISHED) {
+            GameConsole.getInstance().append("Pizza is finished! Now rating the order...");    
             currentState = GameState.RATING_PIZZA;
             progressGame();
         }
