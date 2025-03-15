@@ -78,14 +78,6 @@ public class DayCreator {
         return leavingMessage.toString();
     }
 
-    // Calls the next customer
-    public Customer getNextCustomer() {
-        if (!customersForTheDay.isEmpty()) {
-            return customersForTheDay.remove(0); // removes and returns the first customer
-        }
-        return null; // no more customers
-    }
-
     public double calculatePrice(double basePrice) {
         int[] midWeekDays = {2, 3, 4};
         for (int day : midWeekDays) {

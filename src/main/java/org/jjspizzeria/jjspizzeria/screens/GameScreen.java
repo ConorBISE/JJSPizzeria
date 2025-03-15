@@ -108,7 +108,6 @@ public class GameScreen extends Screen implements PizzaObserver {
 
     @Override
     public void onPizzaChanged(Pizza pizza, PizzaState state) {
-        System.out.println("onPizzaChanged() called - Current Pizza State: " + state);
 
         if (state == PizzaState.FINISHED) {
             GameConsole.getInstance().append("Pizza is finished! Now rating the order...");
@@ -223,7 +222,7 @@ public class GameScreen extends Screen implements PizzaObserver {
             //day 1 and 2 will have regular pricing
             pricingStrategy = new RegularPricing();
         } else{ //day 3 will have ,midweek pricing (20% discount)
-
+        GameConsole.getInstance().append("Its now mid week so all our pizzas are at 20% discount. WOOHOO!!");
         pricingStrategy = new MidWeekPricing();
     }
      priceCalculator = new PriceCalculator(pricingStrategy);

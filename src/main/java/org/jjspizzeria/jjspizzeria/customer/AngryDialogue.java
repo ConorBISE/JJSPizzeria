@@ -3,7 +3,7 @@ package org.jjspizzeria.jjspizzeria.customer;
 public class AngryDialogue implements Personality{
     @Override
     public String greetingDialogue(String name, String orderDetails) {
-        return "Ugh, I'm obviously " + name +
+        return "Ugh, I'm " + name +
                 ". If you're actually able to make a pizza, then I'll order " + orderDetails + ".";
 
     }
