@@ -1,9 +1,9 @@
 package org.jjspizzeria.jjspizzeria;
 
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.MidWeekPricing;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PriceCalculator;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PricingStrategy;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.RegularPricing;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.MidWeekPricing;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PriceCalculator;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PricingStrategy;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.RegularPricing;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
