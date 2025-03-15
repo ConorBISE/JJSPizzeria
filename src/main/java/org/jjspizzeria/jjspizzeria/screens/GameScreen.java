@@ -9,6 +9,10 @@ import org.jjspizzeria.jjspizzeria.pizza.PizzaRater;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaState;
 import org.jjspizzeria.jjspizzeria.pizza.observer.PizzaObserver;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.*;
+import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.MidWeekPricing;
+import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PriceCalculator;
+import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PricingStrategy;
+import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.RegularPricing;
 
 import java.util.List;
 
@@ -21,12 +25,16 @@ public class GameScreen extends Screen implements PizzaObserver {
 
     private GameState currentState = GameState.DAY_START;
 
+    private PricingStrategy pricingStrategy;
+    private PriceCalculator priceCalculator;
+
     public GameScreen() {
         super("/org/jjspizzeria/jjspizzeria/layouts/game.fxml");
         GameConsole.getInstance().append("Welcome to JJ's Pizzeria!");
         this.dayCreator = new DayCreator(currentDay);
         PizzaManager.getInstance().addObserver(this); // Register observer
 
+        setPricingStrategy();
         // Start the first day
         progressGame();
     }
@@ -102,9 +110,9 @@ public class GameScreen extends Screen implements PizzaObserver {
     @Override
     public void onPizzaChanged(Pizza pizza, PizzaState state) {
         System.out.println("onPizzaChanged() called - Current Pizza State: " + state);
-        
+
         if (state == PizzaState.FINISHED) {
-            GameConsole.getInstance().append("Pizza is finished! Now rating the order...");    
+            GameConsole.getInstance().append("Pizza is finished! Now rating the order...");
             currentState = GameState.RATING_PIZZA;
             progressGame();
         }
@@ -115,14 +123,20 @@ public class GameScreen extends Screen implements PizzaObserver {
     private void processPizzaRating() {
         Pizza orderedPizza = createPizzaFromCustomer(currentCustomer);
         Pizza madePizza = PizzaManager.getInstance().getPizza();
+
         double score = PizzaRater.pizzaScore(orderedPizza, madePizza);
+        double basePrice = 10.0;
+        double finalPrice = priceCalculator.calculatePrice(basePrice);
 
         GameConsole.getInstance().append("Rating score: " + score);
         GameConsole.getInstance().append(dayCreator.receiveRatings(currentCustomer));
+        GameConsole.getInstance().append("The price of the pizza is €" + finalPrice );
         // Move to customer leaving state
         currentState = GameState.CUSTOMER_LEAVING;
         progressGame();
     }
+
+
 
     // Handles customer departure and advances to next customer
     private void handleCustomerLeaving() {
@@ -141,6 +155,7 @@ public class GameScreen extends Screen implements PizzaObserver {
 
         if (currentDay <= 3) { // Game lasts 3 days
             dayCreator.setDay(currentDay);
+            setPricingStrategy();
             currentState = GameState.DAY_START;
             progressGame();
         } else {
@@ -201,6 +216,17 @@ public class GameScreen extends Screen implements PizzaObserver {
             pizza = new SliceDecorator(pizza, customer.getSlices());
         }
         return pizza;
+    }
+
+
+    private void setPricingStrategy(){
+        if(currentDay < 3){
+            //day 1 and 2 will have regular pricing
+            pricingStrategy = new RegularPricing();
+        } else{ //day 3 will have ,midweek pricing (20% discount)
+        pricingStrategy = new MidWeekPricing();
+    }
+     priceCalculator = new PriceCalculator(pricingStrategy);
     }
 
 }
