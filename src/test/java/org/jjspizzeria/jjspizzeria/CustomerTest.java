@@ -11,6 +11,7 @@ public class CustomerTest {
 
     @Test
     public void testGetOrderDetails() {
+
         Personality personality = new HappyDialogue();
         List<String> toppings = Arrays.asList("cheese", "tomato", "olives");
         Customer customer = new Customer("Jane", toppings, 6, "crispy", personality);
@@ -22,6 +23,7 @@ public class CustomerTest {
     @Test
     public void testLoadCustomers() throws IOException {
         String resourcePath = "/org/jjspizzeria/jjspizzeria/customers.json";
+
         List<Customer> customers = Customer.loadCustomers(resourcePath);
 
         // testing that the list of customers is loaded correctly
@@ -45,6 +47,7 @@ public class CustomerTest {
     @Test
     public void testHappyDialogue() {
         List<String> toppings = Arrays.asList("cheese", "tomato");
+
         Personality happyPersonality = new HappyDialogue();
         Customer customer = new Customer("John", toppings, 8, "crispy", happyPersonality);
 

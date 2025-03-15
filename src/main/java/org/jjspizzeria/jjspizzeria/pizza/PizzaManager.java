@@ -7,7 +7,6 @@ import org.jjspizzeria.jjspizzeria.GameConsole;
 
 import java.util.ArrayList;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.List;
 
 public class PizzaManager implements Subject {
@@ -53,11 +52,11 @@ public class PizzaManager implements Subject {
      */
     private boolean hasTopping(Class<? extends ToppingDecorator> decoratorClass) {
         Pizza current = pizza;
-        while (current instanceof ToppingDecorator) {
+        while (current instanceof ToppingDecorator currentToppingDecorator) {
             if (decoratorClass.isInstance(current)) {
                 return true;
             }
-            current = ((ToppingDecorator) current).getPizza();
+            current = currentToppingDecorator.getPizza();
         }
         return false;
     }
@@ -81,7 +80,6 @@ public class PizzaManager implements Subject {
             this.pizza = toppingDecorator;
             gameConsole.append("Added " + toppingDecorator.getTopping().getName() + " to the Pizza!");
             notifyObservers();
-            // TODO: add the topping image to the pizza
         } else {
             gameConsole.append("You can't add toppings anymore!");
         }
@@ -98,7 +96,6 @@ public class PizzaManager implements Subject {
                 this.pizza = top.getPizza();
                 notifyObservers();
 
-                // TODO: remove top png
             } else {
                 gameConsole.append("No toppings to remove.");
             }

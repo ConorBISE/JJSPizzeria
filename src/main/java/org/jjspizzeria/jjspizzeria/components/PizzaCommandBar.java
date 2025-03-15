@@ -1,18 +1,18 @@
 package org.jjspizzeria.jjspizzeria.components;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Map;
-import java.util.Stack;
 
 import org.jjspizzeria.jjspizzeria.command.*;
 import org.jjspizzeria.jjspizzeria.framework.FXMLComponent;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
 public class PizzaCommandBar extends FXMLComponent {
 
-    private final Stack<Command> undoStack = new Stack<>();
+    private final Deque<Command> undoStack = new ArrayDeque<>();
 
     private Map<String, Command> toppingCommandMapping;
 
@@ -73,8 +73,8 @@ public class PizzaCommandBar extends FXMLComponent {
         executeCommand(new FinishCommand());
     }
 
+
     public void executeCommand(Command command) {
-        System.out.println("Executing command: " + command); // TODO: remove this debug print
         command.execute();
         if (command.isUndoable()) {
             undoStack.push(command);
@@ -82,7 +82,6 @@ public class PizzaCommandBar extends FXMLComponent {
     }
 
     public void undoLastCommand() {
-        System.out.println("Executing command undoing last command"); // TODO: remove this debug print
         if (!undoStack.isEmpty()) {
             Command command = undoStack.pop();
             command.undo();

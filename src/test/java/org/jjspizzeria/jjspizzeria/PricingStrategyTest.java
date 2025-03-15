@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PricingStrategyTest {
     @Test
-    public void testRegularPricingStrategy() {
+    void testRegularPricingStrategy() {
         double productPrice = 100.0;
 
         PricingStrategy regularPricing = new RegularPricing();
@@ -20,7 +20,7 @@ public class PricingStrategyTest {
     }
 
     @Test
-    public void testMidWeekPricingStrategy(){
+    void testMidWeekPricingStrategy(){
         double productPrice = 100.0;
         double expectedPrice = 80.0;
 
@@ -32,7 +32,7 @@ public class PricingStrategyTest {
     }
 
     @Test
-    public void testSettingStrategies(){
+    void testSettingStrategies(){
         double productPrice = 100.0;
 
         PricingStrategy regularPricing = new RegularPricing();

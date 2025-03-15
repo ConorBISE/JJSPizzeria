@@ -5,8 +5,6 @@ import org.jjspizzeria.jjspizzeria.themes.ThemeManager;
 
 import javafx.fxml.FXML;
 
-import java.io.IOException;
-
 public class WelcomeScreen extends Screen {
     public WelcomeScreen() {
         super("/org/jjspizzeria/jjspizzeria/layouts/welcome.fxml");
