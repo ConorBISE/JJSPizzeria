@@ -5,6 +5,7 @@ import org.jjspizzeria.jjspizzeria.customer.Customer;
 import org.jjspizzeria.jjspizzeria.customer.DayCreator;
 import org.jjspizzeria.jjspizzeria.framework.Screen;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaManager;
+
 import org.jjspizzeria.jjspizzeria.pizza.PizzaRater;
 import org.jjspizzeria.jjspizzeria.pizza.PizzaState;
 import org.jjspizzeria.jjspizzeria.pizza.observer.PizzaObserver;
@@ -15,6 +16,7 @@ import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PricingStrategy;
 import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.RegularPricing;
 
 import java.util.List;
+
 
 public class GameScreen extends Screen implements PizzaObserver {
     private int currentDay = 1;
@@ -68,9 +70,11 @@ public class GameScreen extends Screen implements PizzaObserver {
         }
     }
 
+
     //Starts a new day and prepares customers
     public void startDay() {
         GameConsole.getInstance().append("Day " + currentDay + " begins!");
+
 
         // Get customers for the day
         dailyCustomers = dayCreator.selectCustomer();

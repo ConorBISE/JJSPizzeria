@@ -9,6 +9,7 @@ public class BoxDecorator extends PizzaDecorator {
         this(null);
     }
 
+    @Override
     public String getDescription() {
         return pizza.getDescription() + " boxed";
     }
