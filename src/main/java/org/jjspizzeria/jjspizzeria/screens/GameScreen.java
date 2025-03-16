@@ -79,7 +79,6 @@ public class GameScreen extends Screen implements PizzaObserver {
         // Get customers for the day
         dailyCustomers = dayCreator.selectCustomer();
         currentCustomerIndex = 0;
-        System.out.println("Customers selected for the day: " + dailyCustomers.size());
 
         // Move to next state
         currentState = GameState.CUSTOMER_GREETING;
@@ -131,7 +130,7 @@ public class GameScreen extends Screen implements PizzaObserver {
         double finalPrice = priceCalculator.calculatePrice(basePrice);
 
         GameConsole.getInstance().append(dayCreator.receiveRatings(currentCustomer));
-        GameConsole.getInstance().append("Rating score: " + score);
+        GameConsole.getInstance().append("Rating score: " + String.format("%.2f", score * 100) + "%");
         GameConsole.getInstance().append("The price of the pizza is €" + finalPrice );
         // Move to customer leaving state
         currentState = GameState.CUSTOMER_LEAVING;
