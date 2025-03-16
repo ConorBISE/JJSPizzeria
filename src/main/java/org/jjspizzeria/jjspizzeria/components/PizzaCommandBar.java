@@ -69,7 +69,10 @@ public class PizzaCommandBar extends FXMLComponent {
     }
 
     @FXML
-    private void finish() {}
+    private void finish() {
+        executeCommand(new FinishCommand());
+    }
+
 
     public void executeCommand(Command command) {
         command.execute();

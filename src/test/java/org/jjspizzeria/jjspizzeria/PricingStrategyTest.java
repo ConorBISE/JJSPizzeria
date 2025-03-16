@@ -1,13 +1,12 @@
 package org.jjspizzeria.jjspizzeria;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.MidWeekPricing;
 import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PriceCalculator;
 import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PricingStrategy;
 import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.RegularPricing;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PricingStrategyTest {
     @Test

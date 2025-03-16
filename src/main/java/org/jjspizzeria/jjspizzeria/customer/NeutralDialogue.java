@@ -2,17 +2,19 @@ package org.jjspizzeria.jjspizzeria.customer;
 
 public class NeutralDialogue implements Personality{
     @Override
-    public String greetingDialogue(Customer customer) {
-        return "\nHello, I'm " + customer.getName() + ". I'd like to order " + customer.getOrder().getOrderDetails() + ".";
+    public String greetingDialogue(String name, String orderDetails) {
+        return "Hello, I'm " + name +
+                ". I'd like to order a pizza with " +
+               orderDetails + ".";
     }
 
     @Override
-    public String ratingDialogue(Customer customer) {
-        return "\nThe pizza looks alright. Sound";
+    public String ratingDialogue() {
+        return "The pizza looks alright. Sound";
     }
 
     @Override
-    public String leavingDialogue(Customer customer) {
-        return "\nGoodbye";
+    public String leavingDialogue() {
+        return "Goodbye";
     }
 }

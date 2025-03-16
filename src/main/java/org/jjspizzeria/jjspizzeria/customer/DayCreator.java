@@ -1,5 +1,4 @@
 package org.jjspizzeria.jjspizzeria.customer;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,28 +59,20 @@ public class DayCreator {
 
     public String greetCustomers(Customer customer) {
         StringBuilder greetingMessage = new StringBuilder();
-        greetingMessage.append(customer.getPersonality().greetingDialogue(customer));
+        greetingMessage.append(customer.getPersonality().greetingDialogue(customer.getName(), customer.getOrderDetails()));
         return greetingMessage.toString();
     }
 
     public String receiveRatings(Customer customer) {
         StringBuilder ratingMessage = new StringBuilder();
-        ratingMessage.append(customer.getPersonality().ratingDialogue(customer));
+        ratingMessage.append(customer.getPersonality().ratingDialogue());
         return ratingMessage.toString();
     }
 
     public String customersLeave(Customer customer) {
         StringBuilder leavingMessage = new StringBuilder();
-        leavingMessage.append(customer.getPersonality().leavingDialogue(customer));
+        leavingMessage.append(customer.getPersonality().leavingDialogue());
         return leavingMessage.toString();
-    }
-
-    // Calls the next customer
-    public Customer getNextCustomer() {
-        if (!customersForTheDay.isEmpty()) {
-            return customersForTheDay.remove(0); // removes and returns the first customer
-        }
-        return null; // no more customers
     }
 
     public double calculatePrice(double basePrice) {
