@@ -40,12 +40,12 @@ public class PizzaCommandBar extends FXMLComponent {
 
     @FXML
     private void bakeNormal() {
-        executeCommand(new BakeCommand("normal"));
+        executeCommand(new BakeCommand("Normal"));
     }
 
     @FXML
     private void bakeCrispy() {
-        executeCommand(new BakeCommand("crispy"));
+        executeCommand(new BakeCommand("Crispy"));
     }
 
     @FXML

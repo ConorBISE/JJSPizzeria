@@ -77,6 +77,6 @@ public class PizzaRater {
         // Turn the number of mistakes into a score between 0 - 1
         // We do this by dividing by the number of decorators in the order chain (as a rough
         // measure of how complex the order is), and clamping
-        return Math.max(Math.min((double)mistakes / (double)orderComplexity, 1.), 0.);
+        return 1 - Math.max(Math.min((double)mistakes / (double)orderComplexity, 1.), 0.);
     }
 }
