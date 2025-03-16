@@ -1,56 +1,74 @@
 package org.jjspizzeria.jjspizzeria.customer;
-
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Customer {
     private String name;
-    private Order order;
+    private List<String> toppings;
+    private int slices;
     private Personality personality;
+    private String bakingPreference;
 
-    public Customer(String name, Order order, Personality personality) {
+    public Customer(String name, List<String> toppings, int slices, String bakingPreference, Personality personality) {
         this.name = name;
-        this.order = order;
+        this.toppings = toppings;
+        this.slices = slices;
+        this.bakingPreference = bakingPreference;
         this.personality = personality;
     }
 
     public String getName() {return name;}
-    public Order getOrder() {return order;}
+    public List<String> getToppings() { return toppings; }
+    public int getSlices() { return slices; }
+    public String getBakingPreference() { return bakingPreference; }
     public Personality getPersonality(){return personality;}
+
+    // Returns a formatted string of the order details
+    public String getOrderDetails() {
+        return "a pizza with " + String.join(", ", toppings) +
+                " cut into " + slices + " slices and baked " + bakingPreference;
+    }
+
     public static List<Customer> loadCustomers(String resourcePath) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-
-        InputStream inputStream = Customer.class.getResourceAsStream(resourcePath);
-        if (inputStream == null) {
-            throw new IOException("Resource not found: " + resourcePath);
-        }
-
-        // reads JSON content into JsonNode
-        JsonNode root = objectMapper.readTree(inputStream);
         List<Customer> customers = new ArrayList<>();
 
-        for (JsonNode node : root) {
-            String name = node.get("name").asText();
+        try (InputStream inputStream = Customer.class.getResourceAsStream(resourcePath)) {
+            if (inputStream == null) {
+                throw new IOException("Resource not found: " + resourcePath);
+            }
 
-            //extracting order details
-            List<String> toppings = objectMapper.convertValue(node.get("order").get("toppings"), List.class);
-            int slices = node.get("order").get("slices").asInt();
-            String bakingPreference = node.get("order").get("bakingPreference").asText();
+            // Read JSON content into JsonNode
+            JsonNode root = objectMapper.readTree(inputStream);
 
-            //creating an order object with the data we just got
-            Order order = new Order(toppings, slices, bakingPreference);
+            for (JsonNode node : root) {
+                String name = node.get("name").asText();
 
-            String type = node.get("type").asText();
-            Personality personality = assignPersonality(type);
 
-            customers.add(new Customer(name, order, personality));
+                List<String> toppings = objectMapper.convertValue(node.get("order").get("toppings"),
+                        new TypeReference<List<String>>() {});
+
+                int slices = node.get("order").get("slices").asInt();
+                String bakingPreference = node.get("order").get("bakingPreference").asText();
+
+                String type = node.get("type").asText();
+                Personality personality = assignPersonality(type);
+
+                customers.add(new Customer(name, toppings, slices, bakingPreference, personality));
+            }
+        } catch (IOException e) {
+            throw new IOException("Error loading customers from " + resourcePath, e);
         }
+
         return customers;
     }
+
 
     private static Personality assignPersonality(String type){
         switch(type.toUpperCase()){

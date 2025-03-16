@@ -39,7 +39,6 @@ public class GameConsole {
      * Appends text to the console’s TextArea.
      */
     public void append(String text) {
-        //  TODO: If needed, wrap this in Platform.runLater(...)
         textArea.appendText(text + "\n");
         // Scroll to the bottom whenever new text is appended
         textArea.setScrollTop(Double.MAX_VALUE);

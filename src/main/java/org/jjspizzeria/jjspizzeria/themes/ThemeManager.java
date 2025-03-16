@@ -26,11 +26,14 @@ public class ThemeManager {
         return currentTheme;
     }
 
-    //this method if there are 2 buttons to choose theme on the welcome page(before console)
-    public void setThemeByButton(String themeName) { //using names to be easier to identify themes
+    // this method if there are 2 buttons to choose theme on the welcome page(before
+    // console)
+    public void setThemeByButton(String themeName) { // using names to be easier to identify themes
         for (ThemeFactory theme : availableThemes) {
             if (theme.getThemeName().equalsIgnoreCase(themeName)) {
                 currentTheme = theme;
                 break;
             }
-}}};
+        }
+    }
+}

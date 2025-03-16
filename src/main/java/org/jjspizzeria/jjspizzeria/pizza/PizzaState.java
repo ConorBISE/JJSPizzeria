@@ -8,5 +8,6 @@ public enum PizzaState {
     BAKING,    // pizza is in the oven, timer is running
     BAKED,     // done baking, can slice or box
     SLICED,    // after slicing
-    BOXED      // final state
+    BOXED,      // sitting in a box on the counter ready to go
+    FINISHED
 }

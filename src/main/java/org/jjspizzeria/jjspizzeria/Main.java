@@ -14,18 +14,18 @@ public class Main extends Application {
 
         Scene scene = new Scene(new WelcomeScreen());
 
+
         primaryStage.setResizable(false);
 
         scene.getStylesheets()
+
             .add(
                 getClass()
                 .getResource("/org/jjspizzeria/jjspizzeria/styles.css")
                 .toExternalForm()
             );
 
-        primaryStage.addEventHandler(Screen.RESIZE_WINDOW, e -> {
-            primaryStage.sizeToScene();
-        });
+        primaryStage.addEventHandler(Screen.RESIZE_WINDOW, e -> primaryStage.sizeToScene());
 
         primaryStage.setScene(scene);
         primaryStage.show();

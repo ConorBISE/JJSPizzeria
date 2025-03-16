@@ -3,11 +3,11 @@ package org.jjspizzeria.jjspizzeria.pizza.pizzadecorator;
 public abstract class PizzaDecorator implements Pizza {
     protected Pizza pizza;
 
-    public PizzaDecorator(Pizza pizza) {
+    protected PizzaDecorator(Pizza pizza) {
         this.pizza = pizza;
     }
 
-    public PizzaDecorator() {
+    protected PizzaDecorator() {
         
     }
 

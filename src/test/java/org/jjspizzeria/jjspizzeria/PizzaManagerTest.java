@@ -2,7 +2,6 @@ package org.jjspizzeria.jjspizzeria;
 
 import org.jjspizzeria.jjspizzeria.pizza.*;
 import org.jjspizzeria.jjspizzeria.pizza.pizzadecorator.*;
-import org.jjspizzeria.jjspizzeria.GameConsole;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,14 +13,11 @@ public class PizzaManagerTest {
     private GameConsole mockConsole;
 
     static {
-        try {
-            Platform.startup(() -> {});
-        } catch (IllegalStateException e) {
-        }
+        Platform.startup(() -> {});
     }
 
     @Before
-    public void setUp() {
+    void setUp() {
         PizzaManager.resetInstance();
 
         mockConsole = mock(GameConsole.class);
@@ -32,21 +28,21 @@ public class PizzaManagerTest {
     }
 
     @Test
-    public void testSingleton() {
+    void testSingleton() {
         PizzaManager instance1 = PizzaManager.getInstance();
         PizzaManager instance2 = PizzaManager.getInstance();
         assertSame(instance1, instance2);
     }
 
     @Test
-    public void testAddTopping() {
+    void testAddTopping() {
         ToppingDecorator cheese = new CheeseDecorator();
         pizzaManager.addTopping(cheese);
         assertTrue(pizzaManager.getPizza() instanceof CheeseDecorator);
     }
 
     @Test
-    public void testAddDuplicateTopping() {
+    void testAddDuplicateTopping() {
         ToppingDecorator cheese1 = new CheeseDecorator();
         ToppingDecorator cheese2 = new CheeseDecorator();
         pizzaManager.addTopping(cheese1);
@@ -55,7 +51,7 @@ public class PizzaManagerTest {
     }
 
     @Test
-    public void testRemoveTopTopping() {
+    void testRemoveTopTopping() {
         ToppingDecorator cheese = new CheeseDecorator();
         pizzaManager.addTopping(cheese);
         pizzaManager.removeTopTopping();
@@ -63,30 +59,29 @@ public class PizzaManagerTest {
     }
 
     @Test
-    public void testRemoveNoToppings() {
+    void testRemoveNoToppings() {
         pizzaManager.removeTopTopping();
         verify(mockConsole).append("No toppings to remove.");
     }
 
     @Test
-    public void testBakePizza() {
+    void testBakePizza() {
         BakeDecorator bakeDecorator = new BakeDecorator("crispy");
         pizzaManager.bakePizza(bakeDecorator);
         assertEquals(PizzaState.BAKED, pizzaManager.getPizzaState());
     }
 
     @Test
-    public void testSlicePizzaAfterBaking() throws InterruptedException {
+    void testSlicePizzaAfterBaking() throws InterruptedException {
         BakeDecorator bakeDecorator = new BakeDecorator("crispy");
         pizzaManager.bakePizza(bakeDecorator);
-        Thread.sleep(1500);
         SliceDecorator sliceDecorator = new SliceDecorator(6);
         pizzaManager.slicePizza(sliceDecorator);
         assertEquals(PizzaState.SLICED, pizzaManager.getPizzaState());
     }
 
     @Test
-    public void testBoxPizzaBeforeSlicing() {
+    void testBoxPizzaBeforeSlicing() {
         BakeDecorator bakeDecorator = new BakeDecorator("crispy");
         pizzaManager.bakePizza(bakeDecorator);
         BoxDecorator boxDecorator = new BoxDecorator();
@@ -95,10 +90,9 @@ public class PizzaManagerTest {
     }
 
     @Test
-    public void testBoxPizzaAfterSlicing() throws InterruptedException {
+    void testBoxPizzaAfterSlicing() throws InterruptedException {
         BakeDecorator bakeDecorator = new BakeDecorator("crispy");
         pizzaManager.bakePizza(bakeDecorator);
-        Thread.sleep(1500);
         SliceDecorator sliceDecorator = new SliceDecorator(6);
         pizzaManager.slicePizza(sliceDecorator);
         BoxDecorator boxDecorator = new BoxDecorator();

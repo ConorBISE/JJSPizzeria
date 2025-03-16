@@ -1,16 +1,16 @@
 package org.jjspizzeria.jjspizzeria;
 
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.MidWeekPricing;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PriceCalculator;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PricingStrategy;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.RegularPricing;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.MidWeekPricing;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PriceCalculator;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PricingStrategy;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.RegularPricing;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PricingStrategyTest {
     @Test
-    public void testRegularPricingStrategy() {
+    void testRegularPricingStrategy() {
         double productPrice = 100.0;
 
         PricingStrategy regularPricing = new RegularPricing();
@@ -20,7 +20,7 @@ public class PricingStrategyTest {
     }
 
     @Test
-    public void testMidWeekPricingStrategy(){
+    void testMidWeekPricingStrategy(){
         double productPrice = 100.0;
         double expectedPrice = 80.0;
 
@@ -32,7 +32,7 @@ public class PricingStrategyTest {
     }
 
     @Test
-    public void testSettingStrategies(){
+    void testSettingStrategies(){
         double productPrice = 100.0;
 
         PricingStrategy regularPricing = new RegularPricing();

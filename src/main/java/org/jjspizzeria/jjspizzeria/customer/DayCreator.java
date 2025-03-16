@@ -1,14 +1,13 @@
 package org.jjspizzeria.jjspizzeria.customer;
-
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.MidWeekPricing;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PriceCalculator;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.PricingStrategy;
-import org.jjspizzeria.jjspizzeria.pizza.priceStrategy.RegularPricing;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.MidWeekPricing;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PriceCalculator;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.PricingStrategy;
+import org.jjspizzeria.jjspizzeria.pizza.pricestrategy.RegularPricing;
 
 public class DayCreator {
     private List<Customer> allCustomers;
@@ -21,8 +20,14 @@ public class DayCreator {
 
     private PriceCalculator calculator;
 
-    public DayCreator(int day) throws IOException{
-        this.allCustomers = Customer.loadCustomers(RESOURCE_PATH);
+    public DayCreator(int day) {
+        try {
+            this.allCustomers = Customer.loadCustomers(RESOURCE_PATH);
+        } catch (IOException e) {
+            e.printStackTrace(); // Log the error
+            this.allCustomers = new ArrayList<>(); // Default to an empty customer list
+        }
+
         this.random = new Random();
         this.customersForTheDay = new ArrayList<>();
         this.day = day;
@@ -32,14 +37,13 @@ public class DayCreator {
 
     }
 
-    public List<Customer> selectCustomer(){
+    public List<Customer> selectCustomer() {
         customersForTheDay.clear(); //resets customers for a new day
 
-        if(this.day == 1){
+        if (this.day == 1) {
             //so that every player will see this customer on day 1
             customersForTheDay.add(allCustomers.get(0));
-
-        }else {
+        } else {
             //getting 3 unique customers randomly
             List<Customer> availableCustomers = new ArrayList<>(allCustomers);
             for (int i = 0; i < 3 && !availableCustomers.isEmpty(); i++) {
@@ -53,39 +57,28 @@ public class DayCreator {
     }
 
 
-    public void greetCustomers() {
-        System.out.println("\nCustomer Arriving:");
-        for (Customer customer : customersForTheDay) {
-            System.out.println(customer.getPersonality().greetingDialogue(customer));
-        }
+    public String greetCustomers(Customer customer) {
+        StringBuilder greetingMessage = new StringBuilder();
+        greetingMessage.append(customer.getPersonality().greetingDialogue(customer.getName(), customer.getOrderDetails()));
+        return greetingMessage.toString();
     }
 
-    public void receiveRatings() {
-        System.out.println("\nCustomer Ratings:");
-        for (Customer customer : customersForTheDay) {
-            System.out.println(customer.getPersonality().ratingDialogue(customer));
-        }
+    public String receiveRatings(Customer customer) {
+        StringBuilder ratingMessage = new StringBuilder();
+        ratingMessage.append(customer.getPersonality().ratingDialogue());
+        return ratingMessage.toString();
     }
 
-    public void customersLeave() {
-        System.out.println("\nCustomers Leaving:");
-        for (Customer customer : customersForTheDay) {
-            System.out.println(customer.getPersonality().leavingDialogue(customer));
-        }
+    public String customersLeave(Customer customer) {
+        StringBuilder leavingMessage = new StringBuilder();
+        leavingMessage.append(customer.getPersonality().leavingDialogue());
+        return leavingMessage.toString();
     }
 
-    // Calls the next customer
-    public Customer getNextCustomer() {
-        if (!customersForTheDay.isEmpty()) {
-            return customersForTheDay.remove(0); // removes and returns the first customer
-        }
-        return null; // no more customers
-    }
-
-    public double calculatePrice(double basePrice){
-        int[] midWeekDays = {2,3,4};
-        for (int day : midWeekDays) {
-            if (this.day == day) {
+    public double calculatePrice(double basePrice) {
+        int[] midWeekDays = {2, 3, 4};
+        for (int midWeekDay : midWeekDays) {
+            if (this.day == midWeekDay) {
                 this.calculator.setStrategy(this.discountPricing);
                 return this.calculator.calculatePrice(basePrice);
             }
@@ -96,28 +89,9 @@ public class DayCreator {
 
     }
 
-    public void setDay(int day){
+    public void setDay(int day) {
         this.day = day;
     }
-
-
-    // this is how i imagine the game class goes -> leaving this here as thoughts until game class created i guess ;)
-//    public void start() {
-    //setup of game stuff
-//        dayCreator.selectCustomers(currentDay);
-
-//        // Game loop where to call different dialogues
-//        Customer currentCustomer;
-
-//        while ((currentCustomer = dayCreator.getNextCustomer()) != null) {
-//            dayCreator.greetCustomer(currentCustomer);
-    //include other stuff here like the making of the pizza
-
-//            dayCreator.receiveRating(currentCustomer);
-//after the rating have the pricing stuff i guess
-//             dayCreator.customerLeaves(currentCustomer);
-//        }
-//        // end of the day so it moves to the next day
-//        currentDay++;
-//    }
 }
+
+

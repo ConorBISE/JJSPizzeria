@@ -4,7 +4,6 @@ import org.jjspizzeria.jjspizzeria.customer.Customer;
 import org.jjspizzeria.jjspizzeria.customer.DayCreator;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DayCreatorTest {
 
     @Test
-    public void testSelectCustomer() throws IOException {
+    void testSelectCustomer() {
 
         DayCreator dayCreator = new DayCreator(1);
 
@@ -28,7 +27,7 @@ public class DayCreatorTest {
     }
 
     @Test
-    public void testRegularPricing() throws IOException {
+    void testRegularPricing() {
         DayCreator dayCreator = new DayCreator(1);
         double basePrice = 25.80;
         double finalPrice = dayCreator.calculatePrice(basePrice);
@@ -36,7 +35,7 @@ public class DayCreatorTest {
     }
 
     @Test
-    public void testMidweekPricing() throws IOException {
+    void testMidweekPricing() {
         DayCreator dayCreator = new DayCreator(2);
         double basePrice = 13.50;
         double finalPrice = dayCreator.calculatePrice(basePrice);
@@ -45,7 +44,7 @@ public class DayCreatorTest {
     }
 
     @Test
-    public void testPricingChange() throws IOException {
+    void testPricingChange() {
         ///////////DAY 1/////////////////////
         DayCreator dayCreator = new DayCreator(1);
         double basePrice = 11.16;
