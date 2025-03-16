@@ -79,7 +79,6 @@ public class GameScreen extends Screen implements PizzaObserver {
         // Get customers for the day
         dailyCustomers = dayCreator.selectCustomer();
         currentCustomerIndex = 0;
-        System.out.println("Customers selected for the day: " + dailyCustomers.size());
 
         // Move to next state
         currentState = GameState.CUSTOMER_GREETING;
