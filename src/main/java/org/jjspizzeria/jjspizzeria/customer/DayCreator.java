@@ -76,7 +76,7 @@ public class DayCreator {
     }
 
     public double calculatePrice(double basePrice) {
-        int[] midWeekDays = {2, 3, 4};
+        int[] midWeekDays = {2, 3};
         for (int midWeekDay : midWeekDays) {
             if (this.day == midWeekDay) {
                 this.calculator.setStrategy(this.discountPricing);
