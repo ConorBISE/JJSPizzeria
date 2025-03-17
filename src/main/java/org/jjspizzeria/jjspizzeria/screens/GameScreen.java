@@ -27,8 +27,7 @@ public class GameScreen extends Screen implements PizzaObserver {
 
     private GameState currentState = GameState.DAY_START;
 
-    private PricingStrategy pricingStrategy;
-    private PriceCalculator priceCalculator;
+
 
     public GameScreen() {
         super("/org/jjspizzeria/jjspizzeria/layouts/game.fxml");
@@ -36,7 +35,6 @@ public class GameScreen extends Screen implements PizzaObserver {
         this.dayCreator = new DayCreator(currentDay);
         PizzaManager.getInstance().addObserver(this); // Register observer
 
-        setPricingStrategy();
         // Start the first day
         progressGame();
     }
@@ -127,7 +125,7 @@ public class GameScreen extends Screen implements PizzaObserver {
 
         double score = PizzaRater.pizzaScore(orderedPizza, madePizza);
         double basePrice = 10.0;
-        double finalPrice = priceCalculator.calculatePrice(basePrice);
+        double finalPrice = dayCreator.calculatePrice(basePrice);
 
         GameConsole.getInstance().append(dayCreator.receiveRatings(currentCustomer));
         GameConsole.getInstance().append("Rating score: " + String.format("%.2f", score * 100) + "%");
@@ -156,7 +154,6 @@ public class GameScreen extends Screen implements PizzaObserver {
 
         if (currentDay <= 3) { // Game lasts 3 days
             dayCreator.setDay(currentDay);
-            setPricingStrategy();
             currentState = GameState.DAY_START;
             progressGame();
         } else {
@@ -219,17 +216,6 @@ public class GameScreen extends Screen implements PizzaObserver {
         return pizza;
     }
 
-
-    public void setPricingStrategy(){
-        if(currentDay < 3){
-            //day 1 and 2 will have regular pricing
-            pricingStrategy = new RegularPricing();
-        } else{ //day 3 will have ,midweek pricing (20% discount)
-        GameConsole.getInstance().append("Its now mid week so all our pizzas are at 20% discount. WOOHOO!!");
-        pricingStrategy = new MidWeekPricing();
-    }
-     priceCalculator = new PriceCalculator(pricingStrategy);
-    }
 
 
 }

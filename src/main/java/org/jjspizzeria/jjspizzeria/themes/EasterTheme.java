@@ -15,7 +15,6 @@ public class EasterTheme implements ThemeFactory{
     public ImageView createBanner() {
         Image bannerImage = new Image(getClass().getResourceAsStream("/org/jjspizzeria/jjspizzeria/images/easter-banner.png"));
         ImageView bannerView = new ImageView(bannerImage);
-        bannerView.setTranslateY(-230);
         bannerView.setFitWidth(400);
         bannerView.setPreserveRatio(true);
         return bannerView;
